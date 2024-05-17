@@ -1,0 +1,189 @@
+/* src/Navbar.css */
+
+.text {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.text:hover {
+  color: black;
+}
+.cart-popup {
+  position: fixed;
+  top: 0;
+  right: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); // semi-transparent background
+  z-index: 999; // Ensure the popup appears above other content
+
+  .cart-content {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    width: 34%;
+    border: 1.4px solid black;
+    max-height: 100%;
+    overflow-y: hidden; // Enable scrolling if content exceeds the height
+    background-color: #fff; // White background for the cart content
+    z-index: 1000; // Ensure the content appears above the semi-transparent background
+    // Ensure the close button is positioned relative to this container
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+
+    .cart-heading {
+      width: 100%;
+      height: 10%;
+      background-color: transparent;
+      position: absolute;
+      border-bottom: 1.4px solid black;
+      display: flex;
+      justify-content: space-between;
+    }
+    .close-btn {
+      width: 20%;
+      background-color: transparent;
+      cursor: pointer;
+      font-size: 20px;
+      color: #333; // Color of the close button
+    }
+  }
+}
+.carttext {
+  height: 100%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 530;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  color: black;
+  height: 11.8vh;
+  width: 100vw;
+  font-family: "myFirstFont";
+  border: 1.4px solid black;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+ul {
+  padding-left: 150px;
+}
+
+.navbar-brand {
+  font-size: 2rem;
+  font-weight: bold;
+  height: 100%;
+  padding-left: 40px;
+  width: 13%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  font-family: "myFirstFont";
+}
+
+.navbar-links {
+  height: 100%;
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  list-style: none;
+  font-size: 0.85rem;
+}
+.navbar-actions {
+  font-size: 0.85rem;
+  width: 20%;
+  height: 100%;
+  display: flex;
+  padding-right: 40px;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+}
+
+.navbar-links li,
+.navbar-actions li {
+  margin-left: 1rem;
+}
+.navbar-links li {
+  width: 10%;
+}
+#blanc {
+  width: 20%;
+}
+.navbar-links a:hover,
+.navbar-actions a:hover {
+  text-decoration: none;
+  color: #000;
+}
+
+.navbar-links a,
+.navbar-actions a {
+  color: black;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.navbar-links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: #000;
+  transform: scaleX(0);
+  transform-origin: left; /* Set the origin to the left edge */
+  transition: transform 0.3s ease-in-out;
+}
+.navbar-links a:hover::after {
+  transform: scaleX(1); /* Scale the underline to full width on hover */
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background: none;
+  border: none;
+  color: black;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.dropdown-content {
+  display: block;
+  position: absolute;
+  background-color: #444;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  min-width: 160px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 0.5rem 1rem;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #555;
+}
