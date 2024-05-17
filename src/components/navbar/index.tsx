@@ -24,7 +24,7 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-brand">
         <Link to="/" className="text">
-          ENRAGE
+          EeNRAGE
         </Link>
       </div>
       <ul className="navbar-links">
