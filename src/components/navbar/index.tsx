@@ -24,7 +24,7 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-brand">
         <Link to="/" className="text">
-          EeNRAGE
+          GRAILZ
         </Link>
       </div>
       <ul className="navbar-links">
@@ -44,7 +44,7 @@ function Navbar() {
           )}
         </li>
         <li id="blanc">
-          <a href="#blanc-by-enrage">BLANK BY ENRAGE</a>
+          <a href="#blanc-by-enrage">BLANK BY GRAILZ</a>
         </li>
       </ul>
       <ul className="navbar-actions">

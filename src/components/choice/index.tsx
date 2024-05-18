@@ -10,7 +10,7 @@ function Choice() {
               MENS
             </Link>
           </div>
-          <img src="../public/row-1-column-2.png" alt="fashion" />
+          <img src="/row-1-column-2.png" alt="fashion" />
         </div>
         <div id="womens">
           <div className="phototext">
@@ -18,7 +18,7 @@ function Choice() {
               WOMENS
             </Link>
             </div>
-          <img src="../public/row-1-column-1.png" alt="accesories" />
+          <img src="/row-1-column-1.png" alt="accesories" />
         </div>
       </section>
     </>
