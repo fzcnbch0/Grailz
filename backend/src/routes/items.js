@@ -3,7 +3,6 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 const items = express.Router();
-
 items.use(express.json());
 items.use(express.urlencoded({ extended: true }));
 

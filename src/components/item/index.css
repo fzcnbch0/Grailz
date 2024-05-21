@@ -1,0 +1,51 @@
+#itemsList{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    right: 0px;
+    top:0px;
+}
+#listtt{
+    background-color: white;
+    height: 100%;
+}
+.singleItem{
+    width: 25%;
+    height: 80%;
+    border-left: 1.4px solid black;
+    border-bottom: 1.4px solid black;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+.item-name{
+    width: 100%;
+    height:  5%;
+    margin-left: 20px;
+    font-size: 1rem;
+    font-weight: 400;
+    display: flex;
+    align-items: end;
+    font-family: "myFirstFont";
+}
+.item-price{
+    width: 100%;
+    height: 5%;
+    margin-left: 20px;
+    display: flex;
+    align-items: start;
+    font-family: "myFirstFont";
+    font-weight: 300;
+}
+.item-photo{
+    height: 90%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
