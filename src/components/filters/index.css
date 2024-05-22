@@ -1,0 +1,11 @@
+#filter-box{
+    height: 50%;
+    width: 20%;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+h3{
+    width: 100%;
+}

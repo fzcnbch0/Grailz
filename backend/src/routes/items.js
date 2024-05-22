@@ -6,10 +6,33 @@ const items = express.Router();
 items.use(express.json());
 items.use(express.urlencoded({ extended: true }));
 
-
 items.get('/', async (req, res) => {
+    const { name, minPrice, maxPrice } = req.query;
+    
+    const filterConditions = {
+        where: {},
+    };
+
+    if (name) {
+        filterConditions.where.name = {
+            contains: name,
+        };
+    }
+
+    if (minPrice) {
+        filterConditions.where.price = {
+            gte: parseFloat(minPrice),
+        };
+    }
+
+    if (maxPrice) {
+        filterConditions.where.price = {
+            lte: parseFloat(maxPrice),
+        };
+    }
+
     try {
-        const items = await prisma.item.findMany();
+        const items = await prisma.item.findMany(filterConditions);
         res.json(items);
     } catch (err) {
         res.status(500).send(err.message);
@@ -32,4 +55,5 @@ items.get('/:id', async (req, res) => {
         res.status(500).send(err.message);
     }
 });
+
 export default items;
