@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import Navbar from "../../components/navbar";
 import Choice from "../../components/choice";
 import ItemList from "../../components/item";
-import Filter from "../../components/filters";
 import "./style.css";
 function HomePage(){
     useEffect(() => {

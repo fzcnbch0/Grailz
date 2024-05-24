@@ -17,7 +17,7 @@ const Filter: React.FC<FilterProps> = ({ onFilter }) => {
   return (
     <div id='filter-box'>
       <h3>Filter Items</h3>
-      <div>
+      <div className='filtr'>
         <label>Name:</label>
         <input
           type="text"
@@ -25,7 +25,7 @@ const Filter: React.FC<FilterProps> = ({ onFilter }) => {
           onChange={(e) => setName(e.target.value)}
         />
       </div>
-      <div>
+      <div className='filtr'>
         <label>Min Price:</label>
         <input
           type="number"
@@ -33,7 +33,7 @@ const Filter: React.FC<FilterProps> = ({ onFilter }) => {
           onChange={(e) => setMinPrice(e.target.value)}
         />
       </div>
-      <div>
+      <div className='filtr'>
         <label>Max Price:</label>
         <input
           type="number"
@@ -41,7 +41,7 @@ const Filter: React.FC<FilterProps> = ({ onFilter }) => {
           onChange={(e) => setMaxPrice(e.target.value)}
         />
       </div>
-      <button onClick={handleFilter}>Apply Filter</button>
+      <button id='apply-button' onClick={handleFilter}>Apply Filter</button>
     </div>
   );
 };
