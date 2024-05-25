@@ -1,6 +1,7 @@
 // Filter.tsx
 import React, { useState } from 'react';
-import "./index.css";
+import './index.css';
+
 interface FilterProps {
   onFilter: (filter: { name?: string; minPrice?: string; maxPrice?: string }) => void;
 }

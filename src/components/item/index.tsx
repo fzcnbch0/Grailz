@@ -1,10 +1,8 @@
-// ItemList.tsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import "./index.css";
+import './index.css';
 import Filter from '../filters';
 
-// Define the Item interface
 interface Item {
   item_id: number;
   name: string;
@@ -12,7 +10,11 @@ interface Item {
   price: string;
 }
 
-const ItemList: React.FC = () => {
+interface ItemListProps {
+  category?: string; // Make category prop optional
+}
+
+const ItemList: React.FC<ItemListProps> = ({ category }) => {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -21,7 +23,11 @@ const ItemList: React.FC = () => {
     setLoading(true);
     try {
       const query = new URLSearchParams(filter as Record<string, string>).toString();
-      const response = await axios.get<Item[]>(`http://localhost:3000/items?${query}`);
+      let url = 'http://localhost:3000/items';
+      if (category) {
+        url += `/category/${category}`;
+      }
+      const response = await axios.get<Item[]>(`${url}?${query}`);
       setItems(response.data);
       setLoading(false);
     } catch (error) {
@@ -32,7 +38,7 @@ const ItemList: React.FC = () => {
 
   useEffect(() => {
     fetchItems();
-  }, []);
+  }, [category]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -49,7 +55,7 @@ const ItemList: React.FC = () => {
         <ul id='itemsList'>
           {items.map(item => (
             <li key={item.item_id} className='singleItem'>
-              <img src="" alt="zdj" className='item-photo'/>
+              <img src='' alt='zdj' className='item-photo' />
               <h2 className='item-name'>{item.name}</h2>
               <p className='item-price'> ${item.price}</p>
             </li>

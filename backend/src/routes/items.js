@@ -55,5 +55,33 @@ items.get('/:id', async (req, res) => {
         res.status(500).send(err.message);
     }
 });
+items.get('/category/:department', async (req, res) => {
+    const { department } = req.params;
+    const { name, minPrice, maxPrice } = req.query;
+  
+    try {
+      const items = await prisma.item.findMany({
+        where: {
+          item_category: {
+            department: department,
+          },
+          name: { contains: name || '' },
+          price: { gte: minPrice ? parseFloat(minPrice) : undefined },
+          price: { lte: maxPrice ? parseFloat(maxPrice) : undefined },
+        },
+        include: {
+          item_category: true,
+          measurements: true,
+          offer: true,
+          user_cart: true,
+          user_orders: true,
+        },
+      });
+      res.json(items);
+    } catch (error) {
+      res.status(500).json({ error: 'An error occurred while fetching items.' });
+    }
+  });
+  
 
 export default items;

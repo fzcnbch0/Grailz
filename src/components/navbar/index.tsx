@@ -13,7 +13,7 @@ function Navbar() {
 
   const toggleCart = () => {
     setCartOpen(!cartOpen);
-    if (!cartOpen) {  
+    if (!cartOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -29,7 +29,7 @@ function Navbar() {
       </div>
       <ul className="navbar-links">
         <li>
-          <a href="#home">HOME</a>
+          <Link to="/home">HOME</Link>
         </li>
         <li className="dropdown">
           <button className="dropbtn" onClick={toggleDropdown}>
@@ -37,25 +37,25 @@ function Navbar() {
           </button>
           {dropdownOpen && (
             <div className="dropdown-content">
-              <a href="#shop1">Shop Item 1</a>
-              <a href="#shop2">Shop Item 2</a>
-              <a href="#shop3">Shop Item 3</a>
+              <Link to="/shop1">Shop Item 1</Link>
+              <Link to="/shop2">Shop Item 2</Link>
+              <Link to="/shop3">Shop Item 3</Link>
             </div>
           )}
         </li>
         <li id="blanc">
-          <a href="#blanc-by-enrage">BLANK BY GRAILZ</a>
+          <Link to="/blanc-by-enrage">BLANK BY GRAILZ</Link>
         </li>
       </ul>
       <ul className="navbar-actions">
         <li>
-          <a href="#pln">PLN</a>
+          <Link to="/pln">PLN</Link>
         </li>
         <li>
-          <a href="#search">SEARCH</a>
+          <Link to="/search">SEARCH</Link>
         </li>
         <li>
-          <a href="#account">ACCOUNT</a>
+          <Link to="/account">ACCOUNT</Link>
         </li>
         <li>
           <a href="#cart" onClick={toggleCart}>
@@ -72,7 +72,7 @@ function Navbar() {
                 X
               </button>
             </div>
-          </div>  
+          </div>
         </div>
       )}
     </nav>

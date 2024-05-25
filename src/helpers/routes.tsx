@@ -1,5 +1,6 @@
 import React from "react"
 import HomePage from "../pages/home"
+import ShopPage from "../pages/ShopPage"
 
 interface RouteItem{
     path: string,
@@ -14,8 +15,8 @@ export const routes: Array<RouteItem> = [
         label: "Home"
     },
     {
-        path: "/shop",
-        element: <HomePage/>,
+        path: "/shop/:category",
+        element: <ShopPage/>,
         label: "shop"
     },
 ]
