@@ -46,6 +46,7 @@ model user {
   name        String?       @db.VarChar(100)
   balance     Decimal?      @db.Decimal(10, 2)
   city        String?       @db.VarChar(100)
+  password    String?       @db.VarChar(255)
   user_cart   user_cart[]
   user_orders user_orders[]
 }
