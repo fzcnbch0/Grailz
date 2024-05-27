@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './index.css';
 import Filter from '../filters';
-
+import { Link } from 'react-router-dom';
 interface Item {
   item_id: number;
   name: string;
@@ -55,9 +55,11 @@ const ItemList: React.FC<ItemListProps> = ({ category }) => {
         <ul id='itemsList'>
           {items.map(item => (
             <li key={item.item_id} className='singleItem'>
+              <Link to={`/items/${item.item_id}`} id='productlink'>
               <img src='' alt='zdj' className='item-photo' />
               <h2 className='item-name'>{item.name}</h2>
               <p className='item-price'> ${item.price}</p>
+              </Link>
             </li>
           ))}
         </ul>

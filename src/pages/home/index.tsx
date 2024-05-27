@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Navbar from "../../components/navbar";
 import Choice from "../../components/choice";
 import ItemList from "../../components/item";
+import Footer from "../../components/footer";
 import "./style.css";
 function HomePage(){
     useEffect(() => {
@@ -16,6 +17,7 @@ function HomePage(){
             <a id="directory">View all products</a>
         </div>
         <ItemList/>
+        <Footer/>
         </>
     )
 }

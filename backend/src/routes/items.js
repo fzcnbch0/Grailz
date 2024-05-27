@@ -45,6 +45,13 @@ items.get('/:id', async (req, res) => {
     try {
         const item = await prisma.item.findUnique({
             where: { item_id: itemId },
+            include: {
+                item_category: true,
+                measurements: true,
+                offer: true,
+                user_cart: true,
+                user_orders: true,
+            },
         });
         if (item) {
             res.json(item);
@@ -55,6 +62,7 @@ items.get('/:id', async (req, res) => {
         res.status(500).send(err.message);
     }
 });
+
 items.get('/category/:department', async (req, res) => {
     const { department } = req.params;
     const { name, minPrice, maxPrice } = req.query;

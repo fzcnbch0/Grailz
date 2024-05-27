@@ -13,7 +13,7 @@
       position: absolute;
       top: 0;
       right: 0px;
-      width: 34%;
+      width: 32%;
       border: 1.4px solid black;
       min-height: 100%;
       overflow-y: hidden; // Enable scrolling if content exceeds the height
@@ -90,5 +90,42 @@
   }
   }
   #generalinfo{
+    width: 90%;
     height: 45%;
+    display: flex;
+    flex-direction: column;
+
+    label{
+      width: 60%;
+      height: 40%;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    #checkbox{
+      width: 13%;
+      height: 13%;
+      border: 1.4px solid black;
+      accent-color: white;
+    }
+    #price{
+      height: 10%;
+    }
+    #tax{
+      height: 10%;
+    }
+    #buttons{
+      height: 40%;
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      padding-bottom: 30px;
+      .cart-buttons{
+        height: 38%;
+        background: none;
+        border: 1.4px solid black;
+        color: #333;
+      }
+    }
   }

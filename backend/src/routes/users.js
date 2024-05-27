@@ -1,11 +1,35 @@
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
-
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 const prisma = new PrismaClient();
 const users = express.Router();
 
 users.use(express.json());
 users.use(express.urlencoded({ extended: true }));
+const secret = 'your_jwt_secret'; // Change this to a secure secret
+
+users.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  // Retrieve user from the database
+  const user = await prisma.user.findUnique({ where: { username } });
+
+  if (!user) {
+    return res.status(401).json({ error: 'Invalid username or password' });
+  }
+
+  // Compare passwords
+  const passwordMatch = await bcrypt.compare(password, user.password);
+
+  if (!passwordMatch) {
+    return res.status(401).json({ error: 'Invalid username or password' });
+  }
+
+  // Generate JWT token or manage session
+  // Return success response
+  res.json({ message: 'Login successful' });
+});
 
 
 users.get('/', async (req, res) => {
@@ -77,6 +101,7 @@ users.get('/:id/cart', async (req, res) => {
           }
         },
       });
+      
       res.json(cartItems);
     } catch (error) {
       res.status(500).json({ error: 'Failed to fetch cart items' });
