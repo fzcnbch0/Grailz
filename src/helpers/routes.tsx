@@ -4,7 +4,7 @@ import ShopPage from "../pages/ShopPage"
 import AccountPage from "../pages/account"
 import ItemPage from "../pages/item"
 //import ItemDetails from "../pages/itemDetail"
-
+import LogPage from "../pages/loginPage"
 interface RouteItem{
     path: string,
     element: React.JSX.Element,
@@ -30,6 +30,11 @@ export const routes: Array<RouteItem> = [
     {
         path: "/items/:id",
         element: <ItemPage/>,
+        label: "account"
+    },
+    {
+        path: "/login",
+        element: <LogPage/>,
         label: "account"
     },
 ]

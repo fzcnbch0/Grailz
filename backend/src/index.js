@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client';
 import items from './routes/items.js';
 import offers from './routes/offers.js';
 import users from './routes/users.js';
+import login from './routes/login.js';
 import cors from 'cors';
 const app = express();
 const prisma = new PrismaClient();
@@ -17,7 +18,8 @@ app.get('/', (req, res) => {
 
 app.use('/items',items);
 app.use('/offers', offers);
-app.use('/users', users)
+app.use('/users', users);
+app.use('/login', login);
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
