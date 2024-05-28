@@ -43,7 +43,7 @@ function Navbar() {
       </div>
       <ul className="navbar-links">
         <li>
-          <Link to="/home">HOME</Link>
+          <Link to="/">HOME</Link>
         </li>
         <li className="dropdown">
           <button className="dropbtn" onClick={toggleDropdown}>
@@ -51,9 +51,10 @@ function Navbar() {
           </button>
           {dropdownOpen && (
             <div className="dropdown-content">
-              <Link to="/shop1">Shop Item 1</Link>
-              <Link to="/shop2">Shop Item 2</Link>
-              <Link to="/shop3">Shop Item 3</Link>
+              <Link to="/shop/">All</Link>
+              <Link to="/shop/pants">TOPS</Link>
+              <Link to="/shop/bottoms">BOTTOMS</Link>
+              <Link to="/shop/accesroies">ACCESORIES</Link>
             </div>
           )}
         </li>

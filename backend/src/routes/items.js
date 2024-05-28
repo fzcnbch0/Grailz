@@ -38,6 +38,19 @@ items.get('/', async (req, res) => {
         res.status(500).send(err.message);
     }
 });
+items.get('/:id/user-count', async (req, res) => {
+    const itemId = parseInt(req.params.id);
+    try {
+        const count = await prisma.user_cart.count({
+            where: {
+                item_id: itemId
+            }
+        });
+        res.json({ itemId, userCount: count });
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+});
 
 // Route to get a specific item by ID
 items.get('/:id', async (req, res) => {

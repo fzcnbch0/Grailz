@@ -80,7 +80,7 @@ const Cart: React.FC<CartProps> = ({ cartOpen, toggleCart, userId }) => {
                       <div className='prod-inf'>
                         <h3>{cartItem.item.name}</h3>
                         <div>Size: {cartItem.item.item_category.size}</div>
-                        <div>Price: ${cartItem.item.price}</div>
+                        <div>Price: {cartItem.item.price} zł</div>
                       </div>
                     </li>
                   ))}

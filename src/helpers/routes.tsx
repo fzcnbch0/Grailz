@@ -30,6 +30,6 @@ export const routes: Array<RouteItem> = [
     {
         path: "/items/:id",
         element: <ItemPage/>,
-       label: "account"
+        label: "account"
     },
 ]
