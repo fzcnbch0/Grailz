@@ -23,7 +23,7 @@ export const routes: Array<RouteItem> = [
         label: "shop"
     },
     {
-        path: "/account",
+        path: "/account/:id",
         element: <AccountPage/>,
         label: "account"
     },

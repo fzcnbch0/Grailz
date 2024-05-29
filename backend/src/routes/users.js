@@ -8,6 +8,50 @@ users.use(express.json());
 users.use(express.urlencoded({ extended: true }));
 const secret = 'your_jwt_secret'; // Change this to a secure secret
 
+users.get('/:id', async (req, res) => {
+  const userId = parseInt(req.params.id);
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: { user_id: userId },
+      include: {
+        user_orders: {
+          include: {
+            item: {
+              select: {
+                item_id: true,
+                name: true,
+                description: true,
+                price: true,
+                item_category: {
+                  select: {
+                    size: true,
+                    designer: true,
+                  }
+                },
+                offer: {
+                  select: {
+                    image_path: true,
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    });
+    
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).send('User not found');
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch account info' });
+  }
+});
+
+
 users.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -41,21 +85,6 @@ users.get('/', async (req, res) => {
 });
 
 // Route to get a specific user by ID
-users.get('/:id', async (req, res) => {
-    const userId = parseInt(req.params.id);
-    try {
-        const user = await prisma.user.findUnique({
-            where: { user_id: userId },
-        });
-        if (user) {
-            res.json(user);
-        } else {
-            res.status(404).send('User not found');
-        }
-    } catch (err) {
-        res.status(500).send(err.message);
-    }
-});
 
 // Route to get all orders for a specific user
 users.get('/:id/orders', async (req, res) => {
