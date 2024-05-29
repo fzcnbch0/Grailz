@@ -1,7 +1,10 @@
 import './indexx.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faFacebookF, faTiktok, faCcMastercard, faCcVisa, faCcPaypal, faCcApplePay } from '@fortawesome/free-brands-svg-icons';
+import { useUser } from '../../UserContext';
 const Footer = () => {
+  const { user } = useUser();
+  console.log(user);
   return (
     <footer className="footer">
       <div id='footer-content'>

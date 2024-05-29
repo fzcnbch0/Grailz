@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useUser } from '../../UserContext';
 import './index.css';
 
 interface User {
@@ -39,53 +39,57 @@ interface Address {
 }
 
 const AccountDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const [user, setUser] = useState<User | null>(null);
+  const { user } = useUser();
+  const [userData, setUserData] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchUser = async () => {
-      try {
-        const response = await axios.get<User>(`http://localhost:3000/users/${id}`);
-        console.log('User data:', response.data);
-        setUser(response.data);
-      } catch (err) {
-        setError('Failed to fetch user data');
-      } finally {
+      if (user) {
+        try {
+          const response = await axios.get<User>(`http://localhost:3000/users/${user.userId}`);
+          console.log('User data:', response.data);
+          setUserData(response.data);
+        } catch (err) {
+          setError('Failed to fetch user data');
+        } finally {
+          setLoading(false);
+        }
+      } else {
         setLoading(false);
       }
     };
-  
+
     fetchUser();
-  }, [id]);
+  }, [user]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-  if (!user) return <div>User not found</div>;
+  if (!userData) return <div>User not found</div>;
 
   return (
     <div id='account-container'>
       <div id="wback">
-        <div>Welcome back, {user.name}</div>
+        <div>Welcome back, {userData.name}</div>
         <div id='out'>Logout</div>
       </div>
 
       <div className="account-details">
         <div className="orders-column">
           <h2>My Orders</h2>
-          {user.user_orders.length > 0 ? (
+          {userData.user_orders.length > 0 ? (
             <div className="order-list">
-              {user.user_orders.map((order) => (
+              {userData.user_orders.map((order) => (
                 <div key={order.order_id} className="order">
                   <div className='inf'>
-                  <h3>{order.item.name}</h3>
-                  <p>Price: ${order.item.price}</p>
-                  {order.item.item_category && (
-                    <div className="category">
-                      <p>Size: {order.item.item_category.size}</p>
-                    </div>
-                  )}
+                    <h3>{order.item.name}</h3>
+                    <p>Price: ${order.item.price}</p>
+                    {order.item.item_category && (
+                      <div className="category">
+                        <p>Size: {order.item.item_category.size}</p>
+                      </div>
+                    )}
                   </div>
 
                   {order.item.offer && (
@@ -103,15 +107,15 @@ const AccountDetail: React.FC = () => {
 
         <div className="primary-address-column">
           <h2>Primary Address</h2>
-          {user.primary_address ? (
+          {userData.primary_address ? (
             <div className="address-details">
-              <p>Street: {user.primary_address.street}</p>
-              <p>City: {user.primary_address.city}</p>
-              <p>Country: {user.primary_address.country}</p>
+              <p>Street: {userData.primary_address.street}</p>
+              <p>City: {userData.primary_address.city}</p>
+              <p>Country: {userData.primary_address.country}</p>
             </div>
           ) : (
             <div className="address-details">
-            <p>No primary address found</p>
+              <p>No primary address found</p>
             </div>
           )}
         </div>

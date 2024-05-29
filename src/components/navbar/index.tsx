@@ -1,7 +1,8 @@
 import "./index.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Cart from "../cart";  // Import the new Cart component
+import Cart from "../cart"; // Import the new Cart component
+import { useUser } from "../../UserContext"; // Import useUser hook
 
 interface Currency {
   code: string;
@@ -32,7 +33,8 @@ function Navbar() {
     setCurrencyDropdownOpen(false);
   };
 
-  const userId = 2; // Example user ID as a number
+  const { user } = useUser(); // Get the user from context
+  const userId = user ? user.userId : null; // Extract userId from user context
 
   return (
     <nav className="navbar">
@@ -89,7 +91,7 @@ function Navbar() {
           </a>
         </li>
       </ul>
-      <Cart cartOpen={cartOpen} toggleCart={toggleCart} userId={userId} />  {/* Pass userId as a number */}
+      {userId && <Cart cartOpen={cartOpen} toggleCart={toggleCart} userId={userId} />} {/* Pass userId as a number */}
     </nav>
   );
 }

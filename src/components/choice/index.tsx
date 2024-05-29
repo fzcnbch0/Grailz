@@ -1,6 +1,9 @@
 import "./index.css";
 import { Link } from "react-router-dom";
+import { useUser } from "../../UserContext";
 function Choice() {
+  const { user } = useUser();
+  console.log(user);
   return (
     <>
       <section id="choice">

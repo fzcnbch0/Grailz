@@ -1,9 +1,11 @@
 import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { routes } from './helpers/routes'
+import { UserProvider } from './UserContext'
 function App() {
 
   return (
+    <UserProvider>
     <Router>
       <Routes>
         {routes.map((route) => (
@@ -15,6 +17,7 @@ function App() {
           ))}
       </Routes>
     </Router>
+    </UserProvider>
     
   )
 }
