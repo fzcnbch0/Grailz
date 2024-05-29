@@ -13,9 +13,11 @@ function Heading() {
       return 'ITEM';
     } else if (path === '/shop/women') {
       return 'WOMEN';
-    } else if (path.startsWith('/account/')) {
+    } else if (path === '/account') {
       return 'ACCOUNT';
-    } else {
+    } else if (path === '/account/register') {
+      return 'REGISTER';
+    }else {
       return 'PAGE';
     }
   };

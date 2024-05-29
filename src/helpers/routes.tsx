@@ -3,6 +3,7 @@ import HomePage from "../pages/home"
 import ShopPage from "../pages/ShopPage"
 import AccountPage from "../pages/account"
 import ItemPage from "../pages/item"
+import RegisterPage from "../pages/registerPage"
 //import ItemDetails from "../pages/itemDetail"
 import LogPage from "../pages/loginPage"
 interface RouteItem{
@@ -25,6 +26,11 @@ export const routes: Array<RouteItem> = [
     {
         path: "/account",
         element: <AccountPage/>,
+        label: "account"
+    },
+    {
+        path: "/account/register",
+        element: <RegisterPage/>,
         label: "account"
     },
     {
