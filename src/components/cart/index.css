@@ -6,8 +6,8 @@
     right: 0px;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); // semi-transparent background
-    z-index: 999; // Ensure the popup appears above other content
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 999; 
   
     .cart-content {
       position: absolute;
@@ -16,10 +16,10 @@
       width: 32%;
       border: 1.4px solid black;
       min-height: 100%;
-      overflow-y: hidden; // Enable scrolling if content exceeds the height
-      background-color: #fff; // White background for the cart content
-      z-index: 1000; // Ensure the content appears above the semi-transparent background
-      // Ensure the close button is positioned relative to this container
+      overflow-y: hidden; 
+      background-color: #fff;
+      z-index: 1000; 
+
       transition: transform 0.3s ease;
       justify-content: center;
       display: flex;
@@ -39,7 +39,7 @@
         background-color: transparent;
         cursor: pointer;
         font-size: 20px;
-        color: #333; // Color of the close button
+        color: #333; 
       }
     }
   }
