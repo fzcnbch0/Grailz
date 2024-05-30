@@ -1,10 +1,8 @@
+import React from 'react';
 import './indexx.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faFacebookF, faTiktok, faCcMastercard, faCcVisa, faCcPaypal, faCcApplePay } from '@fortawesome/free-brands-svg-icons';
-import { useUser } from '../../UserContext';
 const Footer = () => {
-  const { user } = useUser();
-  console.log(user);
   return (
     <footer className="footer">
       <div id='footer-content'>
@@ -28,9 +26,9 @@ const Footer = () => {
           </div>
           <div className="footer-section">
             <ul id='icons'>
-              <li><FontAwesomeIcon icon={faInstagram} className="social-icon" size='2x' /></li>
-              <li><FontAwesomeIcon icon={faFacebookF} className="social-icon" size='2x'/></li>
-              <li><FontAwesomeIcon icon={faTiktok} className="social-icon" size='2x'/></li>
+              <li><FontAwesomeIcon icon={faInstagram} className="social-icon" size='2x' data-testid="social-icon" /></li>
+              <li><FontAwesomeIcon icon={faFacebookF} className="social-icon" size='2x'data-testid="social-icon"/></li>
+              <li><FontAwesomeIcon icon={faTiktok} className="social-icon" size='2x'data-testid="social-icon"/></li>
             </ul>
           </div>
         </div>
@@ -39,10 +37,10 @@ const Footer = () => {
              © GRAILZ
           </div>
           <ul>
-            <li><FontAwesomeIcon icon={faCcMastercard} className="payment-icon" size='2x'/></li>
-            <li><FontAwesomeIcon icon={faCcVisa} className="payment-icon" size='2x'/></li>
-            <li><FontAwesomeIcon icon={faCcPaypal} className="payment-icon"size='2x' /></li>
-            <li><FontAwesomeIcon icon={faCcApplePay} className="payment-icon" size='2x' /></li>
+            <li><FontAwesomeIcon icon={faCcMastercard} className="payment-icon" size='2x' data-testid="payment-icon"/></li>
+            <li><FontAwesomeIcon icon={faCcVisa} className="payment-icon" size='2x' data-testid="payment-icon"/></li>
+            <li><FontAwesomeIcon icon={faCcPaypal} className="payment-icon"size='2x' data-testid="payment-icon"/></li>
+            <li><FontAwesomeIcon icon={faCcApplePay} className="payment-icon" size='2x' data-testid="payment-icon"/></li>
           </ul>
         </div>
       </div>
