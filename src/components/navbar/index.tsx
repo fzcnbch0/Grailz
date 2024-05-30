@@ -1,9 +1,9 @@
-import "./index.scss";
+import "./index.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Cart from "../cart"; // Import the new Cart component
 import { useUser } from "../../UserContext"; // Import useUser hook
-
+import React from "react";
 interface Currency {
   code: string;
   name: string;
