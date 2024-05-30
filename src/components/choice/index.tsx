@@ -1,10 +1,11 @@
+import React from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
 function Choice() {
 
   return (
     <>
-      <section id="choice">
+      <section id="choice" data-testid="choice">
         <div id="mens">
           <div className="phototext">
             <Link to="/shop/men" className="choicetext">

@@ -19,24 +19,27 @@ const Filter: React.FC<FilterProps> = ({ onFilter }) => {
     <div id='filter-box'>
       <h3>Filter Items</h3>
       <div className='filtr'>
-        <label>Name:</label>
+        <label htmlFor="name">Name:</label>
         <input
+        id="name"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div className='filtr'>
-        <label>Min Price:</label>
+        <label htmlFor="minPrice">Min Price:</label>
         <input
+         id="minPrice"
           type="number"
           value={minPrice}
           onChange={(e) => setMinPrice(e.target.value)}
         />
       </div>
       <div className='filtr'>
-        <label>Max Price:</label>
+        <label htmlFor="maxPrice">Max Price:</label>
         <input
+        id="maxPrice"
           type="number"
           value={maxPrice}
           onChange={(e) => setMaxPrice(e.target.value)}
