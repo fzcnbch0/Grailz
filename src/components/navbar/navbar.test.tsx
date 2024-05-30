@@ -16,7 +16,27 @@ describe('Navbar', () => {
 
     expect(getByText('GRAILZ')).toBeInTheDocument;
   });
-
+  it('toggles cart open state and body overflow style when cart button is clicked', () => {
+    const { getByText } = render(
+      <UserProvider>
+        <Router>
+          <Navbar />
+        </Router>
+      </UserProvider>
+    );
+  
+    // Simulate a click on the 'CART' button
+    fireEvent.click(getByText('CART'));
+  
+    // Check if the body overflow style has been changed
+    expect(document.body.style.overflow).toBe('hidden');
+  
+    // Simulate another click on the 'CART' button
+    fireEvent.click(getByText('CART'));
+  
+    // Check if the body overflow style has been changed back
+    expect(document.body.style.overflow).toBe('auto');
+  });
   it('toggles dropdown when SHOP button is clicked', () => {
     const { getByText } = render(
       <UserProvider>
