@@ -9,6 +9,28 @@ jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe('ItemDetail', () => {
+  const item = {
+    item_id: 1,
+    name: 'Test Item',
+    description: 'This is a test item',
+    price: 100,
+    item_category: {
+      department: 'Test Department',
+      category: 'Test Category',
+      size: 'Medium',
+      designer: 'Test Designer',
+    },
+    measurements: {
+      length: 10,
+      width: 5,
+    },
+    offer: {
+      image_path: 'http://localhost:3000/images/test.jpg',
+    },
+  };
+  
+
+  
     it('fetches and displays the item', async () => {
     const item = {
       item_id: 1,
@@ -68,4 +90,29 @@ describe('ItemDetail', () => {
 
     expect(screen.getByText('Error: Fetch failed')).toBeInTheDocument;
   });
+  it('displays loading state', async () => {
+    mockedAxios.get.mockImplementation(() => new Promise(resolve => setTimeout(() => resolve({ data: item }), 1000)));
+    const { getByText } = render(
+      <MemoryRouter initialEntries={['/items/1']}>
+        <Routes>
+          <Route path="/items/:id" element={<ItemDetail />} />
+        </Routes>
+      </MemoryRouter>
+    );
+    expect(getByText('Loading...')).toBeInTheDocument;
+  });
+  
+  
+  it('updates the document title', async () => {
+    mockedAxios.get.mockResolvedValueOnce({ data: item });
+    render(
+      <MemoryRouter initialEntries={['/items/1']}>
+        <Routes>
+          <Route path="/items/:id" element={<ItemDetail />} />
+        </Routes>
+      </MemoryRouter>
+    );
+    await waitFor(() => expect(document.title).toBe('HOME'));
+  });
+  
 });
