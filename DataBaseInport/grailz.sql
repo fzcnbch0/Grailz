@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 21 Maj 2024, 22:08
+-- Czas generowania: 31 Maj 2024, 21:24
 -- Wersja serwera: 10.4.25-MariaDB
 -- Wersja PHP: 8.1.10
 
@@ -39,16 +39,19 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`item_id`, `name`, `description`, `price`) VALUES
-(1, 'Classic T-Shirt', 'A plain t-shirt for everyday wear.', '19.99'),
-(2, 'Denim Jeans', 'Blue denim jeans with a comfortable fit.', '49.99'),
-(3, 'Leather Jacket', 'A stylish leather jacket for cool weather.', '199.99'),
-(4, 'Summer Dress', 'A light, floral summer dress.', '29.99'),
-(5, 'Sweatpants', 'Comfortable sweatpants for lounging.', '39.99'),
-(6, 'Winter Coat', 'A heavy winter coat to keep you warm.', '149.99'),
-(7, 'Sports Shoes', 'Lightweight and durable sports shoes.', '59.99'),
-(8, 'Baseball Cap', 'A stylish cap to complete your look.', '14.99'),
-(9, 'Sunglasses', 'Protect your eyes with these cool shades.', '24.99'),
-(10, 'Sneakers', 'Trendy sneakers for everyday wear.', '69.99');
+(1, 'black-levis', 'Classic black Levis jeans for everyday wear.', '19.99'),
+(2, 'black-pants', 'Classic black denim jeans with a comfortable fit.', '49.99'),
+(3, 'black-print-tshirt', 'Stylish black printed t-shirt for a trendy look.', '199.99'),
+(4, 'black-tshirt', 'Simple black t-shirt for casual wear.', '29.99'),
+(5, 'blue-jeans', 'Comfortable blue jeans for everyday wear.', '39.99'),
+(6, 'boxy-tshirt', 'Loose-fitting boxy t-shirt for a relaxed look.', '149.99'),
+(7, 'camo-jacket', 'Trendy camo jacket for a rugged outdoor style.', '59.99'),
+(8, 'camo-pants', 'Camouflage print pants for a military-inspired look.', '14.99'),
+(9, 'double-knne-pants', 'Stylish double-knee pants for added durability.', '24.99'),
+(10, 'vintage-jacket', 'Vintage-style jacket for a retro look.', '69.99'),
+(14, 'white-hat', 'Classic white hat to complement any outfit.', '39.99'),
+(15, 'white-navy-hat', 'Stylish white and navy hat for a modern look.', '59.99'),
+(16, 'white-tshirt', 'Simple white t-shirt for everyday wear.', '79.99');
 
 -- --------------------------------------------------------
 
@@ -69,16 +72,19 @@ CREATE TABLE `item_category` (
 --
 
 INSERT INTO `item_category` (`item_id`, `department`, `category`, `size`, `designer`) VALUES
-(1, 'Men', 'Tops', 'M', 'Brand A'),
-(2, 'Women', 'Bottoms', 'L', 'Brand B'),
-(3, 'Men', 'Outerwear', 'XL', 'Brand C'),
-(4, 'Women', 'Dresses', 'M', 'Brand D'),
-(5, 'Men', 'Bottoms', 'L', 'Brand E'),
-(6, 'Men', 'Outerwear', 'L', 'Brand F'),
-(7, 'Unisex', 'Footwear', '10', 'Brand G'),
-(8, 'Unisex', 'Accessories', 'One Size', 'Brand H'),
-(9, 'Unisex', 'Accessories', 'One Size', 'Brand I'),
-(10, 'Unisex', 'Footwear', '9', 'Brand J');
+(1, 'Men', 'Tops', 'L', 'Affliction'),
+(2, 'Women', 'Bottoms', 'M', 'Vintage'),
+(3, 'Men', 'Outerwear', 'XL', 'Y2K'),
+(4, 'Women', 'Dresses', 'M', 'Affliction'),
+(5, 'Men', 'Bottoms', 'L', 'Vintage'),
+(6, 'Men', 'Outerwear', 'L', 'Vintage'),
+(7, 'Unisex', 'Footwear', '10', 'Vintage'),
+(8, 'Unisex', 'Accessories', 'One Size', 'Affliction'),
+(9, 'Unisex', 'Accessories', 'One Size', 'Y2K'),
+(10, 'Unisex', 'Footwear', '9', 'Vintage'),
+(14, 'Men', 'Tops', 'L', 'Affliction'),
+(15, 'Women', 'Bottoms', 'M', 'Vintage'),
+(16, 'Men', 'Outerwear', 'M', 'Y2K');
 
 -- --------------------------------------------------------
 
@@ -106,7 +112,10 @@ INSERT INTO `measurements` (`item_id`, `length`, `width`) VALUES
 (7, 30, 10),
 (8, 7, 6.5),
 (9, 5.5, 5),
-(10, 29, 10.5);
+(10, 29, 10.5),
+(14, 30, 20),
+(15, 35, 18.5),
+(16, 27, 22);
 
 -- --------------------------------------------------------
 
@@ -124,16 +133,19 @@ CREATE TABLE `offer` (
 --
 
 INSERT INTO `offer` (`item_id`, `image_path`) VALUES
-(1, '/images/classic_tshirt.jpg'),
-(2, '/images/denim_jeans.jpg'),
-(3, '/images/leather_jacket.jpg'),
-(4, '/images/summer_dress.jpg'),
-(5, '/images/sweatpants.jpg'),
-(6, '/images/winter_coat.jpg'),
-(7, '/images/sports_shoes.jpg'),
-(8, '/images/baseball_cap.jpg'),
-(9, '/images/sunglasses.jpg'),
-(10, '/images/sneakers.jpg');
+(1, '/public/products/black-levis.jpg'),
+(2, '/products/black-pants.jpg'),
+(3, '/products/black-print-tshirt.jpg'),
+(4, '/products/black-tshirt.jpg'),
+(5, '/products/blue-jeans.jpg'),
+(6, '/products/boxy-tshirt.jpg'),
+(7, '/products/camo-jacket.jpg'),
+(8, '/products/camo-pants.jpg'),
+(9, '/products/double-knne-pants.jpg'),
+(10, '/products/vintage-jacket.jpg'),
+(14, '/products/white-hat.jpg'),
+(15, '/products/white-navy-hat.jpg'),
+(16, '/products/white-tshirt.jpg');
 
 -- --------------------------------------------------------
 
@@ -145,24 +157,32 @@ CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `balance` decimal(10,2) DEFAULT NULL,
-  `city` varchar(100) DEFAULT NULL
+  `city` varchar(100) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `user`
 --
 
-INSERT INTO `user` (`user_id`, `name`, `balance`, `city`) VALUES
-(1, 'John Doe', '100.00', 'New York'),
-(2, 'Jane Smith', '150.50', 'Los Angeles'),
-(3, 'Alice Johnson', '75.25', 'Chicago'),
-(4, 'Bob Brown', '50.00', 'Houston'),
-(5, 'Charlie Davis', '200.00', 'Phoenix'),
-(6, 'Diana Evans', '300.75', 'Philadelphia'),
-(7, 'Frank Green', '125.00', 'San Antonio'),
-(8, 'Grace Harris', '80.00', 'San Diego'),
-(9, 'Henry Irwin', '90.50', 'Dallas'),
-(10, 'Ivy Johnson', '120.00', 'San Jose');
+INSERT INTO `user` (`user_id`, `name`, `balance`, `city`, `password`) VALUES
+(1, 'John Doe', '100.00', 'New York', 'password1'),
+(2, 'Jane Smith', '150.50', 'Los Angeles', 'password2'),
+(3, 'Alice Johnson', '75.25', 'Chicago', 'password3'),
+(4, 'Bob Brown', '50.00', 'Houston', 'password4'),
+(5, 'Charlie Davis', '200.00', 'Phoenix', 'password5'),
+(6, 'Diana Evans', '300.75', 'Philadelphia', 'password6'),
+(7, 'Frank Green', '125.00', 'San Antonio', 'password7'),
+(8, 'Grace Harris', '80.00', 'San Diego', 'password8'),
+(9, 'Henry Irwin', '90.50', 'Dallas', 'password9'),
+(10, 'Ivy Johnson', '120.00', 'San Jose', 'password10'),
+(11, 'John Doe', NULL, 'New York', '$2a$10$rNlov4cfckGiyp8RLzmwcuUyzaXPpmrktszX5ITHqclifnjUrfAN6'),
+(12, 'John Doe2', NULL, 'New York', '$2a$10$kDY9UMgg1X6Kt5S1HgbPBeTWhk25Me2AMehqaRBceRltcw/QDJXf2'),
+(13, 'John Doe2', NULL, 'New York', '$2a$10$j59CvzWR2cULcYIemd/Y6uY0dOinRgZzBjmYGrIZkDYoONKehTEES'),
+(14, 'John Doe2', NULL, 'neww', '$2a$10$Ixy5f/0fQWx0XPgJQxaw0.15khFpwblQCGp8oOug5KeECHatgtvSO'),
+(15, 'John Doe11', NULL, NULL, 'password2'),
+(16, '1', NULL, NULL, '1'),
+(17, 'bruno', NULL, 'poznan', 'szwec');
 
 -- --------------------------------------------------------
 
@@ -182,10 +202,13 @@ CREATE TABLE `user_cart` (
 INSERT INTO `user_cart` (`user_id`, `item_id`) VALUES
 (1, 2),
 (1, 3),
+(1, 14),
 (2, 1),
 (2, 4),
+(2, 15),
 (3, 5),
 (3, 6),
+(3, 16),
 (4, 7),
 (4, 8),
 (5, 9),
@@ -199,7 +222,8 @@ INSERT INTO `user_cart` (`user_id`, `item_id`) VALUES
 (9, 7),
 (9, 8),
 (10, 9),
-(10, 10);
+(10, 10),
+(16, 3);
 
 -- --------------------------------------------------------
 
@@ -232,7 +256,10 @@ INSERT INTO `user_orders` (`user_id`, `order_id`, `item_id`) VALUES
 (2, 12, 3),
 (3, 13, 4),
 (4, 14, 5),
-(5, 15, 6);
+(5, 15, 6),
+(1, 16, 14),
+(2, 17, 15),
+(3, 18, 16);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -291,19 +318,19 @@ ALTER TABLE `user_orders`
 -- AUTO_INCREMENT dla tabeli `item`
 --
 ALTER TABLE `item`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT dla tabeli `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT dla tabeli `user_orders`
 --
 ALTER TABLE `user_orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Ograniczenia dla zrzutów tabel

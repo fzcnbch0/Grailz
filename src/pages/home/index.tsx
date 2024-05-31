@@ -6,7 +6,7 @@ import Footer from "../../components/footer";
 import "./style.css";
 function HomePage(){
     useEffect(() => {
-        document.title = 'Enrage - Homepage';
+        document.title = 'Grailz - Homepage';
     }, []);
   
     return(

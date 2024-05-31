@@ -89,6 +89,7 @@ items.get('/:id', async (req, res) => {
     }
 });
 
+// Route to get items by category with image_path
 items.get('/category/:department', async (req, res) => {
     const { department } = req.params;
     const { name, minPrice, maxPrice } = req.query;
@@ -111,7 +112,14 @@ items.get('/category/:department', async (req, res) => {
           user_orders: true,
         },
       });
-      res.json(items);
+      
+      // Dodaj image_path do każdego zwracanego obiektu
+      const itemsWithImagePath = items.map(item => ({
+          ...item,
+          image_path: item.offer?.image_path || 'default-image-path.jpg',
+      }));
+      
+      res.json(itemsWithImagePath);
     } catch (error) {
       res.status(500).json({ error: 'An error occurred while fetching items.' });
     }

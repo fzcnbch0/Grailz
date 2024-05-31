@@ -61,7 +61,7 @@ function Navbar() {
           )}
         </li>
         <li id="blanc">
-          <Link to="/blanc-by-enrage">BLANK BY GRAILZ</Link>
+          <Link to="/blanc-by-grailz">BLANK BY GRAILZ</Link>
         </li>
       </ul>
       <ul className="navbar-actions">
