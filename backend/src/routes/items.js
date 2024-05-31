@@ -11,6 +11,9 @@ items.get('/', async (req, res) => {
     
     const filterConditions = {
         where: {},
+        include: {
+            offer: true, // Dołącz model offer
+        },
     };
 
     if (name) {
@@ -21,23 +24,33 @@ items.get('/', async (req, res) => {
 
     if (minPrice) {
         filterConditions.where.price = {
+            ...filterConditions.where.price,
             gte: parseFloat(minPrice),
         };
     }
 
     if (maxPrice) {
         filterConditions.where.price = {
+            ...filterConditions.where.price,
             lte: parseFloat(maxPrice),
         };
     }
 
     try {
         const items = await prisma.item.findMany(filterConditions);
-        res.json(items);
+
+        // Dodaj image_path do każdego zwracanego obiektu
+        const itemsWithImagePath = items.map(item => ({
+            ...item,
+            image_path: item.offer?.image_path || 'default-image-path.jpg',
+        }));
+
+        res.json(itemsWithImagePath);
     } catch (err) {
         res.status(500).send(err.message);
     }
 });
+
 items.get('/:id/user-count', async (req, res) => {
     const itemId = parseInt(req.params.id);
     try {

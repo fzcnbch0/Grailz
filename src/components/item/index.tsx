@@ -3,11 +3,13 @@ import axios from 'axios';
 import './index.css';
 import Filter from '../filters';
 import { Link } from 'react-router-dom';
+
 interface Item {
   item_id: number;
   name: string;
   description: string;
   price: string;
+  image_path?: string; // Optional property for image path
 }
 
 interface ItemListProps {
@@ -38,6 +40,7 @@ const ItemList: React.FC<ItemListProps> = ({ category }) => {
 
   useEffect(() => {
     fetchItems();
+    
   }, [category]);
 
   if (loading) {
@@ -56,9 +59,10 @@ const ItemList: React.FC<ItemListProps> = ({ category }) => {
           {items.map(item => (
             <li key={item.item_id} className='singleItem'>
               <Link to={`/items/${item.item_id}`} id='productlink'>
-              <img src='' alt='zdj' className='item-photo' />
-              <h2 className='item-name'>{item.name}</h2>
-              <p className='item-price'> ${item.price}</p>
+                
+                <img src={item.image_path || 'default-image-path.jpg'} alt={item.image_path} className='item-photo' />
+                <h2 className='item-name'>{item.name}</h2>
+                <p className='item-price'>${item.price}</p>
               </Link>
             </li>
           ))}
