@@ -86,12 +86,12 @@ function Navbar() {
           <Link to="/account">ACCOUNT</Link>
         </li>
         <li>
-          <a href="#cart" onClick={toggleCart}>
+          <a onClick={toggleCart} id="cart-button">
             CART
           </a>
         </li>
       </ul>
-      {userId && <Cart cartOpen={cartOpen} toggleCart={toggleCart} userId={userId} />} {/* Pass userId as a number */}
+      {userId && <Cart cartOpen={cartOpen} toggleCart={toggleCart} userId={userId} />} 
     </nav>
   );
 }

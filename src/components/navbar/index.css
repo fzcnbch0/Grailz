@@ -51,8 +51,12 @@
       cursor: pointer;
       font-size: 20px;
       color: #333; 
+
     }
   }
+}
+#cart-button{
+  cursor: pointer;
 }
 .carttext {
   height: 100%;

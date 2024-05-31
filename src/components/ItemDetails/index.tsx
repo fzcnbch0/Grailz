@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import './index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { useUser } from '../../UserContext';
 
 interface Item {
   item_id: number;
@@ -40,10 +41,14 @@ const getPageName = (path: string, itemName?: string): string => {
 
 const ItemDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const { user } = useUser(); // Pobierz informacje o aktualnie zalogowanym użytkowniku
+  const userId = user ? user.userId : null; // Wyciągnij userId z kontekstu użytkownika
+
   const [item, setItem] = useState<Item | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [userCount, setUserCount] = useState<number | null>(null);
+  const [isInCart, setIsInCart] = useState<boolean>(false); // Nowy stan dla sprawdzenia, czy przedmiot jest w koszyku
 
   useEffect(() => {
     if (!id) {
@@ -78,75 +83,100 @@ const ItemDetail: React.FC = () => {
       }
     };
 
+    const checkIfInCart = async () => {
+      try {
+        if (userId) {
+          const response = await axios.get<{ inCart: boolean }>(`http://localhost:3000/users/${userId}/cart/${id}`);
+          setIsInCart(response.data.inCart);
+        }
+      } catch (err) {
+        console.error('Failed to check if item is in cart', err);
+      }
+    };
+
     fetchItem();
     fetchUserCount();
-  }, [id]);
+    checkIfInCart();
+  }, [id, userId]);
+
+  const handleToggleCart = async () => {
+    if (!userId) {
+      alert('You need to be logged in to add items to your favorites.');
+      return;
+    }
+
+    if (!item) {
+      console.error('Item is not loaded');
+      return;
+    }
+
+    try {
+      if (isInCart) {
+        await axios.delete(`http://localhost:3000/users/${userId}/cart/${item.item_id}`);
+        setIsInCart(false);
+      } else {
+        await axios.post(`http://localhost:3000/users/${userId}/cart`, { itemId: item.item_id });
+        setIsInCart(true);
+      }
+    } catch (error) {
+      console.error('Failed to toggle item in cart', error);
+    }
+  };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
   return (
     <div id='item-container'>
-    
-    {item?.offer && (
+      {item?.offer && (
         <div className="offer">
           <img src={item.offer.image_path} alt={item.name} />
         </div>
       )}
-
-
-
-    <div className="item-detail">
-
-      <div id='iinfo'>
-      <div id='data'>
-      <h1>{item?.name}</h1>
-      <div className='subsection'>{item?.description}</div>
-      <div>Price: ${item?.price}</div>
-      {item?.item_category && (
-        <div className="category">
-          <div className='subsection'>Department  <p>{item.item_category.department}</p> </div>
-          <div className='subsection'>Category <p>{item.item_category.category}</p> </div>
-          <div className='subsection'>Size  <p>{item.item_category.size}</p> </div>
-          <div className='subsection'>Designer <p>{item.item_category.designer}</p></div>
+      <div className="item-detail">
+        <div id='iinfo'>
+          <div id='data'>
+            <h1>{item?.name}</h1>
+            <div className='subsection'>{item?.description}</div>
+            <div>Price: ${item?.price}</div>
+            {item?.item_category && (
+              <div className="category">
+                <div className='subsection'>Department  <p>{item.item_category.department}</p> </div>
+                <div className='subsection'>Category <p>{item.item_category.category}</p> </div>
+                <div className='subsection'>Size  <p>{item.item_category.size}</p> </div>
+                <div className='subsection'>Designer <p>{item.item_category.designer}</p></div>
+              </div>
+            )}
+          </div>
+          <div id='likecounter'>
+            {userCount !== null && (
+              <div className="user-count">
+                <FontAwesomeIcon icon={faHeart} id='heart-icon' onClick={handleToggleCart} style={{ color: isInCart ? 'red' : 'black' }} />
+                <p> {userCount}</p>
+              </div>
+            )}
+          </div>
         </div>
-      )}
-      </div>
-      <div id='likecounter'>
-      {userCount !== null && (
-        <div className="user-count">
-           <FontAwesomeIcon icon={faHeart} id='heart-icon'/>
-          <p> {userCount}</p>
+        {item?.measurements && (
+          <div className="measurements">
+            <table>
+              <tr>
+                <th className='legend'>Length:</th>
+                <th className='value'>{item.measurements.length} cm</th>
+              </tr>
+              <tr>
+                <th className='legend'>Width:</th>
+                <th className='value'>{item.measurements.width} cm</th>
+              </tr>
+            </table>
+          </div>
+        )}
+        <div className='actions'>
+          <button className='item-actions-button' id='purchase'>PURCHASE</button>
+          <button className='item-actions-button'>OFFER</button>
+          <button className='item-actions-button'>MESSAGE</button>
         </div>
-      )}
       </div>
-      </div>
-      {item?.measurements && (
-        <div className="measurements">
-          <table>
-            <tr>
-              <th className='legend'>Length:</th>
-              <th className='value'>{item.measurements.length} cm</th>
-            </tr>
-            <tr>
-            <th className='legend'>Width:</th>
-              <th className='value'>{item.measurements.width} cm</th>
-            </tr>
-
-          </table>
-          
-        </div>
-      )}
-
-
-      
-
-      <div className='actions'>
-      <button className='item-actions-button' id='purchase'>PURCHASE</button>
-      <button className='item-actions-button'>OFFER</button>
-      <button className='item-actions-button'>MESSAGE</button>
-      </div>
-    </div>
     </div>
   );
 };

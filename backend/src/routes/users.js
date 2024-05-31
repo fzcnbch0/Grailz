@@ -84,7 +84,69 @@ users.get('/', async (req, res) => {
     }
 });
 
-// Route to get a specific user by ID
+users.post('/:userId/cart', async (req, res) => {
+  const userId = parseInt(req.params.userId);
+  const { itemId } = req.body;
+
+  try {
+    const user = await prisma.user.findUnique({ where: { user_id: userId } });
+    const item = await prisma.item.findUnique({ where: { item_id: itemId } });
+
+    if (!user || !item) {
+      return res.status(404).json({ error: 'User or item not found' });
+    }
+
+    await prisma.user_cart.create({
+      data: {
+        user_id: userId,
+        item_id: itemId,
+      }
+    });
+
+    res.status(200).json({ message: 'Item added to cart successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Sprawdź, czy przedmiot jest w koszyku użytkownika
+users.get('/:userId/cart/:itemId', async (req, res) => {
+  const userId = parseInt(req.params.userId);
+  const itemId = parseInt(req.params.itemId);
+
+  try {
+    const userCartItem = await prisma.user_cart.findFirst({
+      where: {
+        user_id: userId,
+        item_id: itemId,
+      },
+    });
+
+    res.status(200).json({ inCart: !!userCartItem });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Usuń przedmiot z koszyka użytkownika
+users.delete('/:userId/cart/:itemId', async (req, res) => {
+  const userId = parseInt(req.params.userId);
+  const itemId = parseInt(req.params.itemId);
+
+  try {
+    await prisma.user_cart.deleteMany({
+      where: {
+        user_id: userId,
+        item_id: itemId,
+      },
+    });
+
+    res.status(200).json({ message: 'Item removed from cart successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 // Route to get all orders for a specific user
 users.get('/:id/orders', async (req, res) => {

@@ -156,3 +156,6 @@
         height: 100%;
     }
 }
+#heart-icon{
+    cursor: pointer;
+}
