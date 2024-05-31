@@ -101,7 +101,7 @@ const AccountDetail: React.FC = () => {
               ))}
             </div>
           ) : (
-            <p>No orders found</p>
+            <div className="order-list">No orders found</div>
           )}
         </div>
 
