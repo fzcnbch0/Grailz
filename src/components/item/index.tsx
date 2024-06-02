@@ -13,10 +13,11 @@ interface Item {
 }
 
 interface ItemListProps {
-  category?: string; // Make category prop optional
+  department?: string;
+  category?: string;
 }
 
-const ItemList: React.FC<ItemListProps> = ({ category }) => {
+const ItemList: React.FC<ItemListProps> = ({ department, category }) => {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -25,9 +26,12 @@ const ItemList: React.FC<ItemListProps> = ({ category }) => {
     setLoading(true);
     try {
       const query = new URLSearchParams(filter as Record<string, string>).toString();
-      let url = 'http://localhost:3000/items';
-      if (category) {
-        url += `/category/${category}`;
+      let url = 'http://localhost:3000/items/filtr';
+      if (department) {
+        url += `/${department}`;
+        if (category) {
+          url += `/${category}`;
+        }
       }
       const response = await axios.get<Item[]>(`${url}?${query}`);
       setItems(response.data);
@@ -40,8 +44,7 @@ const ItemList: React.FC<ItemListProps> = ({ category }) => {
 
   useEffect(() => {
     fetchItems();
-    
-  }, [category]);
+  }, [department, category]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -50,7 +53,6 @@ const ItemList: React.FC<ItemListProps> = ({ category }) => {
   if (error) {
     return <div>{error}</div>;
   }
-
   return (
     <div id='content-box'>
       <Filter onFilter={fetchItems} />

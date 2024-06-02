@@ -60,7 +60,7 @@ const ItemDetail: React.FC = () => {
     const fetchItem = async () => {
       try {
         console.log(`Fetching item with ID: ${id}`);
-        const response = await axios.get<Item>(`http://localhost:3000/items/${id}`);
+        const response = await axios.get<Item>(`http://localhost:3000/items/id/${id}`);
         setItem(response.data);
         document.title = getPageName(window.location.pathname, response.data.name);
       } catch (err) {

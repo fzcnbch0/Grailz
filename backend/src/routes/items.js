@@ -66,7 +66,7 @@ items.get('/:id/user-count', async (req, res) => {
 });
 
 // Route to get a specific item by ID
-items.get('/:id', async (req, res) => {
+items.get('/id/:id', async (req, res) => {
     const itemId = parseInt(req.params.id);
     try {
         const item = await prisma.item.findUnique({
@@ -90,40 +90,63 @@ items.get('/:id', async (req, res) => {
 });
 
 // Route to get items by category with image_path
-items.get('/category/:department', async (req, res) => {
-    const { department } = req.params;
+items.get('/filtr/:department?/:category?', async (req, res) => {
+    const { department, category } = req.params;
     const { name, minPrice, maxPrice } = req.query;
-  
-    try {
-      const items = await prisma.item.findMany({
-        where: {
-          item_category: {
-            department: department,
-          },
-          name: { contains: name || '' },
-          price: { gte: minPrice ? parseFloat(minPrice) : undefined },
-          price: { lte: maxPrice ? parseFloat(maxPrice) : undefined },
-        },
-        include: {
-          item_category: true,
-          measurements: true,
-          offer: true,
-          user_cart: true,
-          user_orders: true,
-        },
-      });
-      
-      // Dodaj image_path do każdego zwracanego obiektu
-      const itemsWithImagePath = items.map(item => ({
-          ...item,
-          image_path: item.offer?.image_path || 'default-image-path.jpg',
-      }));
-      
-      res.json(itemsWithImagePath);
-    } catch (error) {
-      res.status(500).json({ error: 'An error occurred while fetching items.' });
+
+    let whereClause = {};
+    
+    if (department) {
+        whereClause = {
+            ...whereClause,
+            item_category: {
+                department: department,
+                ...(category ? { category: category } : {}),
+            },
+        };
     }
-  });
+
+    if (name) {
+        whereClause = {
+            ...whereClause,
+            name: { contains: name },
+        };
+    }
+
+    if (minPrice || maxPrice) {
+        whereClause = {
+            ...whereClause,
+            price: {
+                ...(minPrice ? { gte: parseFloat(minPrice) } : {}),
+                ...(maxPrice ? { lte: parseFloat(maxPrice) } : {}),
+            },
+        };
+    }
+
+    try {
+        const items = await prisma.item.findMany({
+            where: whereClause,
+            include: {
+                item_category: true,
+                measurements: true,
+                offer: true,
+                user_cart: true,
+                user_orders: true,
+            },
+        });
+
+        const itemsWithImagePath = items.map(item => ({
+            ...item,
+            image_path: item.offer?.image_path || 'default-image-path.jpg',
+        }));
+
+        res.json(itemsWithImagePath);
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching items.' });
+    }
+});
+
+
   
 
 export default items;

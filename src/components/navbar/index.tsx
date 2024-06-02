@@ -1,4 +1,5 @@
 import "./index.css";
+import { useParams } from 'react-router-dom';
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Cart from "../cart"; // Import the new Cart component
@@ -14,7 +15,7 @@ function Navbar() {
   const [cartOpen, setCartOpen] = useState<boolean>(false);
   const [currencyDropdownOpen, setCurrencyDropdownOpen] = useState<boolean>(false);
   const [selectedCurrency, setSelectedCurrency] = useState<string>('PLN');
-
+  const { department } = useParams<{ department: string }>();
   const currencies: Currency[] = [
     { code: 'USD', name: 'US Dollar' },
     { code: 'EUR', name: 'Euro' },
@@ -35,7 +36,7 @@ function Navbar() {
 
   const { user } = useUser(); // Get the user from context
   const userId = user ? user.userId : null; // Extract userId from user context
-
+console.log(department , "Sss");
   return (
     <nav className="navbar">
       <div className="navbar-brand">
@@ -53,10 +54,10 @@ function Navbar() {
           </button>
           {dropdownOpen && (
             <div className="dropdown-content">
-              <Link to="/shop/">All</Link>
-              <Link to="/shop/pants">TOPS</Link>
-              <Link to="/shop/bottoms">BOTTOMS</Link>
-              <Link to="/shop/accesroies">ACCESORIES</Link>
+              <Link to={`/shop/${department}/bottoms`}>BOTTOMS</Link>
+              <Link to={`/shop/${department}/tops`}>TOPS</Link>
+              <Link to={`/shop/${department}/shoes`}>SHOES</Link>
+              <Link to={`/shop/${department}/accessories `}>ACCESSORIES</Link>
             </div>
           )}
         </li>
