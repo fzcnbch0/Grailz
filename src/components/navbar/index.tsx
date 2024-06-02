@@ -25,8 +25,16 @@ function Navbar() {
 
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
   const toggleCart = () => {
-    setCartOpen(!cartOpen);
-    document.body.style.overflow = cartOpen ? "auto" : "hidden";
+
+    if (!userId) {
+      alert('You need to be logged in to add items to use cart.');
+      return;
+    }
+    else{
+      setCartOpen(!cartOpen);
+      document.body.style.overflow = cartOpen ? "auto" : "hidden";
+    }
+    
   };
   const toggleCurrencyDropdown = () => setCurrencyDropdownOpen(!currencyDropdownOpen);
   const handleCurrencySelect = (code: string) => {
@@ -57,7 +65,7 @@ console.log(department , "Sss");
               <Link to={`/shop/${department}/bottoms`}>BOTTOMS</Link>
               <Link to={`/shop/${department}/tops`}>TOPS</Link>
               <Link to={`/shop/${department}/shoes`}>SHOES</Link>
-              <Link to={`/shop/${department}/accessories `}>ACCESSORIES</Link>
+              <Link to={`/shop/${department}/accessories`}>ACCESSORIES</Link>
             </div>
           )}
         </li>

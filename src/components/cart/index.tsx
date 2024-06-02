@@ -24,7 +24,6 @@ interface CartItem {
   };
 }
 
-
 const Cart: React.FC<CartProps> = ({ cartOpen, toggleCart, userId }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -51,6 +50,7 @@ const Cart: React.FC<CartProps> = ({ cartOpen, toggleCart, userId }) => {
     const totalPrice = cartItems.reduce((acc, curr) => acc + parseFloat(curr.item.price), 0);
     setTotalPrice(totalPrice);
   }, [cartItems]);
+
   const handleCheckout = () => {
     if (!agreed) {
       alert("Please agree to the terms and conditions.");
@@ -58,6 +58,7 @@ const Cart: React.FC<CartProps> = ({ cartOpen, toggleCart, userId }) => {
       // Proceed with checkout logic
     }
   };
+
   return (
     <>
       {cartOpen && (
@@ -73,31 +74,36 @@ const Cart: React.FC<CartProps> = ({ cartOpen, toggleCart, userId }) => {
               <div className="error">{error}</div>
             ) : (
               <>
-                <ul className="cart-items">
-                  {cartItems.map((cartItem) => (
-                    <li key={cartItem.item.item_id} className="cart-item">
-                      <img src={cartItem.item.offer.image_path} alt={cartItem.item.name} />
-                      <div className='prod-inf'>
-                        <h3>{cartItem.item.name}</h3>
-                        <div>Size: {cartItem.item.item_category.size}</div>
-                        <div>Price: {cartItem.item.price} zł</div>
+                {cartItems.length === 0 ? (
+                  <div className="empty-cart">Cart empty</div>
+                ) : (
+                  <>
+                    <ul className="cart-items">
+                      {cartItems.map((cartItem) => (
+                        <li key={cartItem.item.item_id} className="cart-item">
+                          <img src={cartItem.item.offer.image_path} alt={cartItem.item.name} />
+                          <div className='prod-inf'>
+                            <h3>{cartItem.item.name}</h3>
+                            <div>Size: {cartItem.item.item_category.size}</div>
+                            <div>Price: {cartItem.item.price} zł</div>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                    <div id='generalinfo'>
+                      <label>
+                        <input type="checkbox" checked={agreed} onChange={() => setAgreed(!agreed)} id='checkbox'/>
+                        I agree to the terms and conditions
+                      </label>
+                      <p id='price'>Total: {totalPrice.toFixed(2)}złPLN</p>
+                      <p id='tax'>Tax included and shipping calculated at checkout</p>
+                      <div id='buttons'>
+                        <button className='cart-buttons'>View Cart</button>
+                        <button className='cart-buttons' onClick={handleCheckout}>Checkout</button>
                       </div>
-                    </li>
-                  ))}
-                </ul>
-                <div id='generalinfo'>
-                  <label>
-                    <input type="checkbox" checked={agreed} onChange={() => setAgreed(!agreed)} id='checkbox'/>
-                    I agree to the terms and conditions
-                  </label>
-                  <p id='price'>Total: {totalPrice.toFixed(2)}złPLN</p>
-                  <p id='tax'>Tax included and shipping calculated at checkout</p>
-                  <div id='buttons'>
-                    <button className='cart-buttons'>View Cart</button>
-                    <button className='cart-buttons' onClick={handleCheckout}>Checkout</button>
-                  </div>
-                </div>
-
+                    </div>
+                  </>
+                )}
               </>
             )}
           </div>
