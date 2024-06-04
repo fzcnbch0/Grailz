@@ -89,19 +89,25 @@ items.get('/id/:id', async (req, res) => {
     }
 });
 
-// Route to get items by category with image_path
 items.get('/filtr/:department?/:category?', async (req, res) => {
     const { department, category } = req.params;
     const { name, minPrice, maxPrice } = req.query;
 
     let whereClause = {};
-    
-    if (department) {
+
+    if (department && department !== 'all') {
         whereClause = {
             ...whereClause,
             item_category: {
                 department: department,
                 ...(category ? { category: category } : {}),
+            },
+        };
+    } else if (department === 'all' && category) {
+        whereClause = {
+            ...whereClause,
+            item_category: {
+                category: category,
             },
         };
     }

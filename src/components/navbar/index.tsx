@@ -14,7 +14,7 @@ const Navbar = () => {
   const [cartOpen, setCartOpen] = useState<boolean>(false);
   const [currencyDropdownOpen, setCurrencyDropdownOpen] = useState<boolean>(false);
   const { selectedCurrency, setSelectedCurrency } = useCurrency();
-  const { department } = useParams<{ department: string }>();
+  const { department = 'all' } = useParams<{ department: string }>();
   const { user } = useUser();
   const userId = user ? user.userId : null;
 
