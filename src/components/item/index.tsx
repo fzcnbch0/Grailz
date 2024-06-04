@@ -3,13 +3,14 @@ import axios from 'axios';
 import './index.css';
 import Filter from '../filters';
 import { Link } from 'react-router-dom';
+import { useCurrency } from '../../contexts/CurrencyContext';
 
 interface Item {
   item_id: number;
   name: string;
   description: string;
   price: string;
-  image_path?: string; // Optional property for image path
+  image_path?: string;
 }
 
 interface ItemListProps {
@@ -18,6 +19,7 @@ interface ItemListProps {
 }
 
 const ItemList: React.FC<ItemListProps> = ({ department, category }) => {
+  const { selectedCurrency, exchangeRates } = useCurrency();
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -46,6 +48,12 @@ const ItemList: React.FC<ItemListProps> = ({ department, category }) => {
     fetchItems();
   }, [department, category]);
 
+  const convertPrice = (price: string) => {
+    const basePrice = parseFloat(price);
+    const exchangeRate = exchangeRates[selectedCurrency];
+    return (basePrice * exchangeRate).toFixed(2);
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -53,6 +61,7 @@ const ItemList: React.FC<ItemListProps> = ({ department, category }) => {
   if (error) {
     return <div>{error}</div>;
   }
+
   return (
     <div id='content-box'>
       <Filter onFilter={fetchItems} />
@@ -61,10 +70,9 @@ const ItemList: React.FC<ItemListProps> = ({ department, category }) => {
           {items.map(item => (
             <li key={item.item_id} className='singleItem'>
               <Link to={`/items/${item.item_id}`} id='productlink'>
-                
                 <img src={item.image_path || 'default-image-path.jpg'} alt={item.image_path} className='item-photo' />
                 <h2 className='item-name'>{item.name}</h2>
-                <p className='item-price'>${item.price}</p>
+                <p className='item-price'>{convertPrice(item.price)} {selectedCurrency}</p>
               </Link>
             </li>
           ))}

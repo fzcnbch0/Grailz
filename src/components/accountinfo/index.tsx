@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useUser } from '../../UserContext';
+import { useUser } from '../../contexts/UserContext';
 import './index.css';
 
 interface User {

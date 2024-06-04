@@ -1,6 +1,6 @@
 import { render, fireEvent } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { UserProvider } from '../../UserContext';
+import { UserProvider } from '../../contexts/UserContext';
 import Navbar from './index';
 import React from 'react';
 

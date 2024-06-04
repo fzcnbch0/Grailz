@@ -3,7 +3,7 @@ import AccountDetail from "../../components/accountinfo";
 import Heading from "../../components/heading";
 import Footer from "../../components/footer";
 import './index.css'
-import { useUser } from "../../UserContext";
+import { useUser } from "../../contexts/UserContext";
 import LoginPage from "../../components/login/login";
 function AccountPage(){
     const { user } = useUser();

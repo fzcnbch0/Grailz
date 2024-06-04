@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import AccountDetail from '.';
 import axios from 'axios';
 import '@testing-library/jest-dom';
-import { useUser } from '../../UserContext';
+import { useUser } from '../../contexts/UserContext';
 
 jest.mock('axios');
 jest.mock('../../UserContext', () => ({

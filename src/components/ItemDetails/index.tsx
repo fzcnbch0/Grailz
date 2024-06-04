@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 import './index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { useUser } from '../../UserContext';
+import { useUser } from '../../contexts/UserContext';
+import { useCurrency } from '../../contexts/CurrencyContext';
 
 interface Item {
   item_id: number;
@@ -43,6 +44,8 @@ const ItemDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { user } = useUser(); // Pobierz informacje o aktualnie zalogowanym użytkowniku
   const userId = user ? user.userId : null; // Wyciągnij userId z kontekstu użytkownika
+
+  const { selectedCurrency, exchangeRates } = useCurrency(); // Use currency context
 
   const [item, setItem] = useState<Item | null>(null);
   const [loading, setLoading] = useState(true);
@@ -123,6 +126,13 @@ const ItemDetail: React.FC = () => {
     }
   };
 
+  const convertPrice = (price: number | undefined) => {
+    if (price === undefined) return 'N/A';
+    const basePrice = price;
+    const exchangeRate = exchangeRates[selectedCurrency];
+    return (basePrice * exchangeRate).toFixed(2);
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -138,7 +148,7 @@ const ItemDetail: React.FC = () => {
           <div id='data'>
             <h1>{item?.name}</h1>
             <div className='subsection'>{item?.description}</div>
-            <div>Price: ${item?.price}</div>
+            <div>Price: {convertPrice(item?.price)} {selectedCurrency}</div>
             {item?.item_category && (
               <div className="category">
                 <div className='subsection'>Department  <p>{item.item_category.department}</p> </div>

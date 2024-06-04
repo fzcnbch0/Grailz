@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { UserProvider } from '../../UserContext';
+import { UserProvider } from '../../contexts/UserContext';
 import LoginPage from './login';
 
 jest.mock('axios');
