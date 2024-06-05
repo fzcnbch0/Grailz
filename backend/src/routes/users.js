@@ -162,6 +162,39 @@ users.get('/:id/orders', async (req, res) => {
     }
 });
 
+// Place an order for the user
+users.post('/:userId/order', async (req, res) => {
+  const userId = parseInt(req.params.userId);
+  const { items } = req.body;
+
+  try {
+    const orderPromises = items.map(async (itemId) => {
+      // Add item to user orders
+      await prisma.user_orders.create({
+        data: {
+          user_id: userId,
+          item_id: itemId,
+        }
+      });
+      // Remove item from user cart
+      await prisma.user_cart.deleteMany({
+        where: {
+          user_id: userId,
+          item_id: itemId,
+        },
+      });
+    });
+
+    await Promise.all(orderPromises);
+
+    res.status(200).json({ message: 'Order placed successfully and items removed from cart' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to place order' });
+  }
+});
+
+
 // Route to get items in the cart for a specific user
 users.get('/:id/cart', async (req, res) => {
     const userId = parseInt(req.params.id);

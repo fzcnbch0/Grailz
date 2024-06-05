@@ -17,6 +17,8 @@ function Heading() {
       return 'ACCOUNT';
     } else if (path === '/account/register') {
       return 'REGISTER';
+    }else if (path === '/checkout') {
+      return 'CHECKOUT';
     }else {
       return 'PAGE';
     }

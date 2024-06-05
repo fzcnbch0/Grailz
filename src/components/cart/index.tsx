@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './index.css';
+import { useNavigate } from "react-router-dom";
 
 interface CartProps {
   cartOpen: boolean;
@@ -29,6 +30,7 @@ const Cart: React.FC<CartProps> = ({ cartOpen, toggleCart, userId }) => {
   const [error, setError] = useState<string | null>(null);
   const [totalPrice, setTotalPrice] = useState<number>(0); // State variable to hold total price
   const [agreed, setAgreed] = useState<boolean>(false); // State variable to track agreement
+  const navigate = useNavigate(); // Move useNavigate here
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -55,7 +57,7 @@ const Cart: React.FC<CartProps> = ({ cartOpen, toggleCart, userId }) => {
     if (!agreed) {
       alert("Please agree to the terms and conditions.");
     } else {
-      // Proceed with checkout logic
+      navigate('/checkout');
     }
   };
 

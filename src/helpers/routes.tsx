@@ -5,7 +5,7 @@ import AccountPage from '../pages/account';
 import ItemPage from '../pages/item';
 import RegisterPage from '../pages/registerPage';
 import LogPage from '../pages/loginPage';
-
+import CheckoutPage from '../pages/checkoutPage';
 interface RouteItem {
   path: string;
   element: React.JSX.Element;
@@ -42,5 +42,10 @@ export const routes: Array<RouteItem> = [
     path: '/login',
     element: <LogPage />,
     label: 'account',
+  },
+  {
+    path: '/checkout',
+    element: <CheckoutPage />,
+    label: 'checkout',
   },
 ];
