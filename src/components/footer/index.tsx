@@ -32,7 +32,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div id='payment'>
+        <div id='payment2'>
           <div id='watermark'>
              © GRAILZ
           </div>

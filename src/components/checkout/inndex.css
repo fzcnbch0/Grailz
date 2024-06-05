@@ -1,0 +1,108 @@
+.checkout{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 90%;
+}
+.formal-info{
+    display: flex;
+    width: 45%;
+    height: 80%;
+    font-weight: 600;
+    color: black;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    input{
+        height: 20%;
+    }
+    
+}
+.items{
+    width: 45%;
+    height: 90%;
+}
+#shipping{
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+}
+#phone{
+    display: flex;
+    height: 20%;
+    flex-direction: column;
+
+}
+#payement{
+    height: 35%;
+   
+}
+.order-button{
+    height: 10%;
+}
+.labels{
+ 
+    height: 20%;
+}
+#user-shipping-info{
+    display: flex;
+    flex-direction: column;
+}
+#common-info{
+    height: 80%;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    p{
+        display: flex;
+        align-items: center;
+    }
+    
+}
+#payment-choice{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    .payment-button{
+        border: 5px solid red;
+    }
+}
+.small-font-size{
+    font-size: 0.7rem;
+    color: gray;
+}
+.big-font-size{
+    font-size: 1rem;
+    color: black;
+}
+.data{
+    height: 80%;
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .input-filed{
+        align-items: flex-end;
+        height: 85%;
+        width: 90%;
+        border: 1px solid whitesmoke;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        p{
+            display: flex;
+            align-items: center;
+            width: 95%;
+        }
+    }
+}
+#payment{
+   height: 20%;
+   display: flex;
+   flex-direction: column;
+}

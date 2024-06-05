@@ -8,19 +8,19 @@ function Heading() {
     if (path === '/') {
       return 'HOME';
     }else if (path === '/shop/men') {
-      return 'MEN';
+      return 'HOME / MEN';
     } else if (path.startsWith('/items/')) {
-      return 'ITEM';
+      return 'HOME / ITEM';
     } else if (path === '/shop/women') {
-      return 'WOMEN';
+      return 'HOME / WOMEN';
     } else if (path === '/account') {
-      return 'ACCOUNT';
+      return 'HOME / ACCOUNT';
     } else if (path === '/account/register') {
-      return 'REGISTER';
+      return 'HOME / REGISTER';
     }else if (path === '/checkout') {
-      return 'CHECKOUT';
+      return ' CHECKOUT';
     }else {
-      return 'PAGE';
+      return 'HOME / PAGE';
     }
   };
   
@@ -32,7 +32,7 @@ function Heading() {
   return (
     <>
       <div id="heading">
-        <a id="directory">HOME / {pageName}</a>
+        <a id="directory"> {pageName}</a>
       </div>
     </>
   );

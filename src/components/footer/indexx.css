@@ -53,7 +53,7 @@
     align-items: center;
     flex-direction: column;
 }
-#payment{
+#payment2{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -83,7 +83,7 @@
 }
 
 @media (max-width: 1024) {
-    #payment{
+    #payment2{
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -108,7 +108,7 @@
 }
 
 @media (max-width: 700px) {
-    #payment{
+    #payment2{
         display: flex;
         align-items: center;
         justify-content: space-between;

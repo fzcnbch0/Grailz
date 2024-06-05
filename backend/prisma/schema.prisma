@@ -42,13 +42,14 @@ model offer {
 }
 
 model user {
-  user_id     Int           @id @default(autoincrement())
-  name        String?       @db.VarChar(100)
-  balance     Decimal?      @db.Decimal(10, 2)
-  city        String?       @db.VarChar(100)
-  password    String?       @db.VarChar(255)
-  user_cart   user_cart[]
-  user_orders user_orders[]
+  user_id       Int            @id @default(autoincrement())
+  name          String?        @db.VarChar(100)
+  balance       Decimal?       @db.Decimal(10, 2)
+  city          String?        @db.VarChar(100)
+  password      String?        @db.VarChar(255)
+  user_cart     user_cart[]
+  user_orders   user_orders[]
+  user_shipping user_shipping?
 }
 
 model user_cart {
@@ -70,4 +71,15 @@ model user_orders {
 
   @@index([item_id], map: "item_id")
   @@index([user_id], map: "user_id")
+}
+
+model user_shipping {
+  user_id      Int     @id
+  address      String? @db.VarChar(255)
+  city         String? @db.VarChar(100)
+  state        String? @db.VarChar(100)
+  postal_code  String? @db.VarChar(20)
+  country      String? @db.VarChar(100)
+  phone_number String? @db.VarChar(20)
+  user         user    @relation(fields: [user_id], references: [user_id], onUpdate: Restrict, map: "user_shipping_ibfk_1")
 }

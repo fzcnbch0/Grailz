@@ -193,6 +193,26 @@ users.post('/:userId/order', async (req, res) => {
     res.status(500).json({ error: 'Failed to place order' });
   }
 });
+users.get('/:id/shipping', async (req, res) => {
+  const userId = parseInt(req.params.id);
+
+  try {
+    const userShipping = await prisma.user_shipping.findUnique({
+      where: { user_id: userId },
+      include: {
+        user: { select: { name: true } }
+      }
+    });
+
+    if (userShipping) {
+      res.json(userShipping);
+    } else {
+      res.status(404).json({ error: 'User shipping details not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch shipping details' });
+  }
+});
 
 
 // Route to get items in the cart for a specific user

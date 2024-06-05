@@ -6,8 +6,8 @@ function CheckoutPage(){
 
     return(
         <>
+            
             <Navbar/>
-            <Heading/>
             <Checkout/>
             <Footer/>
         </>
