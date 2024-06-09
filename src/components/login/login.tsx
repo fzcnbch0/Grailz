@@ -33,7 +33,7 @@ function LoginPage() {
 
   return (
     <form onSubmit={handleLogin} id="login">
-      <div id="form-content">
+      <div className="form-content">
         <div id="buttons">
           <input
             type="text"

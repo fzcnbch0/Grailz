@@ -102,3 +102,31 @@ h3{
         }
     }
 }
+@media (max-width: 700px) {
+    #wback{
+       
+        width: 100%;
+        height: 13%;
+        border: 1.4px solid black;
+        border-top: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        div{
+            height: 100%;
+            display: flex;
+            
+            align-items: center;
+            width: 47%;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        #out{
+            justify-content: flex-end;
+            text-decoration: underline;
+            font-size: 0.9rem;
+        }
+        
+    }
+}

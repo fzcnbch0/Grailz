@@ -52,6 +52,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
 }
 #payment2{
     display: flex;
@@ -129,6 +130,18 @@
             align-items: center;
         }
         }
+    }
+    .footer-section{
+        width: 27%;
+        height: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        h4{
+            font-size: 0.7rem;
+        }
+    
     }
 }
 
