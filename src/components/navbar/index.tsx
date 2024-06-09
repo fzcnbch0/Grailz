@@ -4,6 +4,7 @@ import { useUser } from '../../contexts/UserContext';
 import Cart from '../cart';
 import './index.css';
 import { useCurrency } from '../../contexts/CurrencyContext';
+
 interface Currency {
   code: string;
   name: string;
@@ -14,7 +15,7 @@ const Navbar = () => {
   const [cartOpen, setCartOpen] = useState<boolean>(false);
   const [currencyDropdownOpen, setCurrencyDropdownOpen] = useState<boolean>(false);
   const { selectedCurrency, setSelectedCurrency } = useCurrency();
-  const { department = 'all' } = useParams<{ department: string }>();
+  const { department = 'all' } = useParams<{ department?: string }>();
   const { user } = useUser();
   const userId = user ? user.userId : null;
 
