@@ -17,7 +17,7 @@ export const useCurrency = () => {
 };
 
 export const CurrencyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [selectedCurrency, setSelectedCurrency] = useState<string>('PLN');
+  const [selectedCurrency, setSelectedCurrency] = useState<string>('USD');
   const exchangeRates = {
     USD: 1,
     EUR: 0.85,

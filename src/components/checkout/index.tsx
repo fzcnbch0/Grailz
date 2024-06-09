@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useUser } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
-import './inndex.css';
-
+import './index.css';
+import { useCurrency } from '../../contexts/CurrencyContext';
 interface CartItem {
   item: {
     item_id: number;
@@ -36,7 +36,9 @@ interface FullShippingInfo extends ShippingInfo {
 
 const Checkout: React.FC = () => {
   const { user } = useUser();
+  const { selectedCurrency, exchangeRates } = useCurrency();
   const userId  = user ? user.userId : 1;
+  
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [totalPrice, setTotalPrice] = useState<number>(0);
@@ -58,6 +60,7 @@ const Checkout: React.FC = () => {
         }
       }
     };
+
 
     fetchCartItems();
 
@@ -107,6 +110,11 @@ const Checkout: React.FC = () => {
   if (orderPlaced) {
     return <div>Order has been placed successfully!</div>;
   }
+  const convertPrice = (price: string) => {
+    const basePrice = parseFloat(price);
+    const exchangeRate = exchangeRates[selectedCurrency];
+    return (basePrice * exchangeRate).toFixed(2);
+  };
 
   return (
     <div className="checkout">
@@ -136,7 +144,7 @@ const Checkout: React.FC = () => {
           <div id='payment'>
   <label htmlFor='payment' className='labels'>Select Your Payment Method</label>
   <div className='data'>
-    <div className='input-filed'>
+    <div className='input-filed' id='payment-buttons-container'>
       <button className='payment-button'>
         <span className='payment-info'>Kartka</span>
       </button>
@@ -151,7 +159,7 @@ const Checkout: React.FC = () => {
         </form>
       </div>
 
-      <div className='items'>
+      <div className='checkout-items'>
         {error ? (
           <div className="error">{error}</div>
         ) : (
@@ -160,11 +168,11 @@ const Checkout: React.FC = () => {
               <div className="empty-cart">Cart is empty</div>
             ) : (
               <>
-                <ul className="cart-items">
+                <ul className="checkout-cart-items">
                   {cartItems.map((cartItem) => (
-                    <li key={cartItem.item.item_id} className="cart-item">
+                    <li key={cartItem.item.item_id} className="checkout-cart-item">
                       <img src={cartItem.item.offer.image_path} alt={cartItem.item.name} />
-                      <div className='prod-inf'>
+                      <div className='checkout-prod-inf'>
                         <h3>{cartItem.item.name}</h3>
                         <div>Size: {cartItem.item.item_category.size}</div>
                         <div>Price: {cartItem.item.price} zł</div>
@@ -173,8 +181,27 @@ const Checkout: React.FC = () => {
                   ))}
                 </ul>
                 <div id='generalinfo'>
-                  <p id='price'>Total: {totalPrice.toFixed(2)} zł</p>
-                  <p id='tax'>Tax included and shipping calculated at checkout</p>
+                  <div id='order-details'>
+                    <p className='checkout-heading'>Order Details</p>
+                    <div id='checkout-price'>
+                      <p>Listing Price</p>
+                      <p className='total-prices'>{convertPrice(totalPrice.toFixed(2))}{selectedCurrency}</p>
+                    </div>
+                    <div id='checkout-shipping'>
+                      <p>Shipping</p>
+                      <p className='total-prices'>50{selectedCurrency}</p>
+                    </div>
+                    <div id='checkout-tax'>
+                      <p>Estimated Tax</p>
+                      <p className='total-prices'>0{selectedCurrency}</p>
+
+                    </div>
+                  </div>
+                  <div id='agreement'>
+
+                  </div>
+                  
+                 
                 </div>
               </>
             )}
