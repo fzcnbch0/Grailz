@@ -130,3 +130,16 @@ h3{
         
     }
 }
+@media (max-width: 700px) {
+
+    .order{
+        height: 50%;
+        display: flex;
+        align-items: center;
+    .inf{
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+    }
+    }
+}

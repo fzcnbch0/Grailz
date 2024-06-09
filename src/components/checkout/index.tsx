@@ -150,6 +150,7 @@ const Checkout: React.FC = () => {
       </button>
       <button className='payment-button' >
         <span className='payment-info'>Gotówka</span>
+        <span className='payment-info'>Gotówka</span>
       </button>
     </div>
   </div>

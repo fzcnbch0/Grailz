@@ -218,4 +218,36 @@ color: black;
             height: 75%;
             margin-right: 20px;
         }
+
+        .checkout-cart-item{
+            width: 100%;
+            height: 60%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px dotted black;
+        
+          img{
+            width: 37%;
+            background-color: rgba(0, 0, 0, 0.3);
+            height: 80%;
+          }
+          .checkout-prod-inf{
+            height: 80%;
+            color: black;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            h3{
+                width: 100%;
+                font-size: small;
+            }
+            div{
+                width: 95%;
+            }
+          }
+          }
 }
