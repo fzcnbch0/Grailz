@@ -35,7 +35,7 @@ Grailz to innowacyjna aplikacja mobilna i internetowa przeznaczona do sprzedaży
 - *Backend:*
   - Serwer API (Node.js/Express)
   - Baza danych (MySQL/Prisma)
-
+![Nazwa Opisowa Zdjęcia](src/assets/db-scheme.png)
 # Technologie
 
 **Języki Programowania:**
