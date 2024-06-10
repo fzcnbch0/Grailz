@@ -1,12 +1,154 @@
-Witaj w Grailz - sklepie internetowym, który oferuje wyjątkową odzież z drugiej ręki. Każdy
-produkt jest unikalny i dostępny tylko w jednym egzemplarzu, co sprawia, że każdy klient czuje
-się wyjątkowo.
+# Spis Treści
 
-Dzięki wbudowanej funkcji śledzenia zainteresowania możesz być na bieżąco z
-nowościami i aktualizacjami dotyczącymi produktów, które Cię interesują.
+## Wprowadzenie
+## Cel i Zakres Projektu
+## Funkcjonalności
+## Architektura Systemu
+## Technologie
+## Instalacja i Konfiguracja
+## Instrukcja Obsługi
+## Zarządzanie Projektem
+## Kontakt
 
-Nasza aplikacja pozwala również na łatwe filtrowanie produktów, aby szybko znaleźć to,
-czego szukasz, bez względu na preferencje.
+# Wprowadzenie
 
-Jako zarejestrowany użytkownik masz dostęp do swojego konta, gdzie możesz zarządzać
-swoimi zamówieniami i przechowywać produkty w koszyku.
+Grailz to innowacyjna aplikacja mobilna i internetowa przeznaczona do sprzedaży odzieży. Projekt łączy w sobie elementy tradycyjnej marki odzieżowej z nowoczesnymi rozwiązaniami e-commerce, umożliwiając użytkownikom przeglądanie, kupowanie i sprzedaż ubrań w prosty i intuicyjny sposób.
+
+# Cel i Zakres Projektu
+
+**Cel:**
+
+- Stworzenie platformy, która umożliwia użytkownikom sprzedaż i zakup odzieży.
+- Zbudowanie rozpoznawalnej marki odzieżowej, która przyciąga klientów dzięki unikalnym projektom i wysokiej jakości produktom.
+
+**Zakres:**
+
+- Projektowanie i rozwój aplikacji mobilnej oraz strony internetowej.
+- Integracja z systemami płatności i zarządzania zamówieniami.
+- Implementacja funkcji społecznościowych, takich jak recenzje użytkowników i profile sprzedawców.
+
+# Funkcjonalności
+
+- **Rejestracja i logowanie:** Użytkownicy mogą tworzyć konta, logować się i zarządzać swoimi profilami.
+- **Przeglądanie produktów:** Intuicyjny interfejs do przeglądania i filtrowania produktów według kategorii, rozmiaru, ceny, itp.
+- **Koszyk i zakupy:** Dodawanie produktów do koszyka, przeglądanie koszyka i finalizacja zakupów.
+- **Płatności:** Integracja z popularnymi systemami płatności, takimi jak PayPal, Stripe, karty kredytowe/debetowe.
+- **Sprzedaż produktów:** Umożliwienie użytkownikom wystawiania własnych produktów na sprzedaż.
+- **Recenzje i oceny:** Użytkownicy mogą zostawiać recenzje i oceny produktów.
+- **Powiadomienia:** Powiadomienia push i e-mailowe dotyczące zamówień, promocji i innych ważnych wydarzeń.
+- **Obsługa klienta:** Wbudowany system wsparcia klienta z funkcjonalnościami czatu na żywo i formularza kontaktowego.
+
+# Architektura Systemu
+
+**Komponenty:**
+
+- *Frontend:*
+  - Aplikacja mobilna (iOS/Android)
+  - Strona internetowa (React.js)
+- *Backend:*
+  - Serwer API (Node.js/Express)
+  - Baza danych (MongoDB)
+- *Infrastruktura:*
+  - Serwery w chmurze (AWS, Heroku)
+  - CDN do dystrybucji treści
+
+# Technologie
+
+**Języki Programowania:**
+
+- JavaScript, TypeScript
+- HTML, CSS
+
+**Frameworki i Biblioteki:**
+
+- React.js, React Native
+- Node.js, Express.js
+
+**Bazy Danych:**
+
+- MongoDB
+
+**Narzędzia DevOps:**
+
+- Docker
+- AWS, Heroku
+
+# Instalacja i Konfiguracja
+
+**Wymagania:**
+
+- Node.js
+- MongoDB
+- Git
+
+**Kroki Instalacji:**
+
+1. Klonowanie repozytorium:
+
+    ```bash
+    git clone https://github.com/username/grailz.git
+    cd grailz
+    ```
+
+2. Instalacja zależności:
+
+    ```bash
+    npm install
+    ```
+
+3. Konfiguracja bazy danych:
+
+    Skonfiguruj MongoDB i zaktualizuj plik .env z odpowiednimi danymi połączenia.
+
+4. Uruchomienie aplikacji:
+
+    ```bash
+    npm start
+    ```
+
+# Instrukcja Obsługi
+
+**Rejestracja i Logowanie:**
+
+1. Wejdź na stronę główną aplikacji lub otwórz aplikację mobilną.
+2. Kliknij na "Rejestracja" i wypełnij formularz.
+3. Po rejestracji, zaloguj się używając swojego e-maila i hasła.
+
+**Przeglądanie Produktów:**
+
+- Skorzystaj z menu kategorii lub wyszukiwarki, aby znaleźć interesujące Cię produkty.
+- Kliknij na produkt, aby zobaczyć szczegóły.
+
+**Zakupy:**
+
+1. Dodaj produkty do koszyka, klikając "Dodaj do koszyka".
+2. Przejdź do koszyka i kliknij "Złóż zamówienie".
+3. Wprowadź dane płatności i potwierdź zakup.
+
+**Sprzedaż Produktów:**
+
+1. Przejdź do swojego profilu i kliknij "Sprzedaj produkt".
+2. Wypełnij formularz wystawiania produktu i kliknij "Opublikuj".
+
+# Zarządzanie Projektem
+
+**Zespół:**
+
+- Kierownik Projektu: Jan Kowalski
+- Frontend Developer: Anna Nowak
+- Backend Developer: Piotr Wiśniewski
+- UX/UI Designer: Marta Kowalczyk
+
+**Harmonogram:**
+
+- Faza 1: Analiza i Planowanie (1 miesiąc)
+- Faza 2: Projektowanie UX/UI (2 miesiące)
+- Faza 3: Rozwój i Testowanie (4 miesiące)
+- Faza 4: Wdrożenie i Utrzymanie (ciągłe)
+
+# Kontakt
+
+- E-mail: support@grailz.com
+- Telefon: +48 123 456 789
+- Adres: Grailz Sp. z o.o., ul. Przykładowa 10, 00-000 Warszawa
+- Grailz - Twój sklep z wyjątkową odzieżą.
