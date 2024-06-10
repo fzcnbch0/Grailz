@@ -108,6 +108,4 @@ Grailz to innowacyjna aplikacja mobilna i internetowa przeznaczona do sprzedaży
 # Kontakt
 
 - E-mail: brunoszwec@gmail.com
-- Telefon: +48 123 456 789
-- Adres: Grailz Sp. z o.o., ul. Przykładowa 10, 00-000 Warszawa
 - Grailz - Twój sklep z wyjątkową odzieżą.
