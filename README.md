@@ -1,15 +1,3 @@
-# Spis Treści
-
-## Wprowadzenie
-## Cel i Zakres Projektu
-## Funkcjonalności
-## Architektura Systemu
-## Technologie
-## Instalacja i Konfiguracja
-## Instrukcja Obsługi
-## Zarządzanie Projektem
-## Kontakt
-
 # Wprowadzenie
 
 Grailz to innowacyjna aplikacja mobilna i internetowa przeznaczona do sprzedaży odzieży. Projekt łączy w sobie elementy tradycyjnej marki odzieżowej z nowoczesnymi rozwiązaniami e-commerce, umożliwiając użytkownikom przeglądanie, kupowanie i sprzedaż ubrań w prosty i intuicyjny sposób.
@@ -23,7 +11,7 @@ Grailz to innowacyjna aplikacja mobilna i internetowa przeznaczona do sprzedaży
 
 **Zakres:**
 
-- Projektowanie i rozwój aplikacji mobilnej oraz strony internetowej.
+- Projektowanie i rozwój strony internetowej.
 - Integracja z systemami płatności i zarządzania zamówieniami.
 - Implementacja funkcji społecznościowych, takich jak recenzje użytkowników i profile sprzedawców.
 
@@ -43,14 +31,10 @@ Grailz to innowacyjna aplikacja mobilna i internetowa przeznaczona do sprzedaży
 **Komponenty:**
 
 - *Frontend:*
-  - Aplikacja mobilna (iOS/Android)
   - Strona internetowa (React.js)
 - *Backend:*
   - Serwer API (Node.js/Express)
-  - Baza danych (MongoDB)
-- *Infrastruktura:*
-  - Serwery w chmurze (AWS, Heroku)
-  - CDN do dystrybucji treści
+  - Baza danych (MySQL/Prisma)
 
 # Technologie
 
@@ -66,19 +50,14 @@ Grailz to innowacyjna aplikacja mobilna i internetowa przeznaczona do sprzedaży
 
 **Bazy Danych:**
 
-- MongoDB
-
-**Narzędzia DevOps:**
-
-- Docker
-- AWS, Heroku
-
+- MySQL
+- 
 # Instalacja i Konfiguracja
 
 **Wymagania:**
 
 - Node.js
-- MongoDB
+- MySQL
 - Git
 
 **Kroki Instalacji:**
@@ -86,7 +65,7 @@ Grailz to innowacyjna aplikacja mobilna i internetowa przeznaczona do sprzedaży
 1. Klonowanie repozytorium:
 
     ```bash
-    git clone https://github.com/username/grailz.git
+    git clone https://github.com/fzcnbch0/grailz.git
     cd grailz
     ```
 
@@ -98,7 +77,7 @@ Grailz to innowacyjna aplikacja mobilna i internetowa przeznaczona do sprzedaży
 
 3. Konfiguracja bazy danych:
 
-    Skonfiguruj MongoDB i zaktualizuj plik .env z odpowiednimi danymi połączenia.
+    Skonfiguruj MySQL i zaktualizuj plik .env z odpowiednimi danymi połączenia.
 
 4. Uruchomienie aplikacji:
 
@@ -110,7 +89,7 @@ Grailz to innowacyjna aplikacja mobilna i internetowa przeznaczona do sprzedaży
 
 **Rejestracja i Logowanie:**
 
-1. Wejdź na stronę główną aplikacji lub otwórz aplikację mobilną.
+1. Wejdź na stronę główną aplikacji.
 2. Kliknij na "Rejestracja" i wypełnij formularz.
 3. Po rejestracji, zaloguj się używając swojego e-maila i hasła.
 
@@ -121,34 +100,14 @@ Grailz to innowacyjna aplikacja mobilna i internetowa przeznaczona do sprzedaży
 
 **Zakupy:**
 
-1. Dodaj produkty do koszyka, klikając "Dodaj do koszyka".
+1. Dodaj produkty do koszyka, klikając serduszko.
 2. Przejdź do koszyka i kliknij "Złóż zamówienie".
 3. Wprowadź dane płatności i potwierdź zakup.
 
-**Sprzedaż Produktów:**
-
-1. Przejdź do swojego profilu i kliknij "Sprzedaj produkt".
-2. Wypełnij formularz wystawiania produktu i kliknij "Opublikuj".
-
-# Zarządzanie Projektem
-
-**Zespół:**
-
-- Kierownik Projektu: Jan Kowalski
-- Frontend Developer: Anna Nowak
-- Backend Developer: Piotr Wiśniewski
-- UX/UI Designer: Marta Kowalczyk
-
-**Harmonogram:**
-
-- Faza 1: Analiza i Planowanie (1 miesiąc)
-- Faza 2: Projektowanie UX/UI (2 miesiące)
-- Faza 3: Rozwój i Testowanie (4 miesiące)
-- Faza 4: Wdrożenie i Utrzymanie (ciągłe)
 
 # Kontakt
 
-- E-mail: support@grailz.com
+- E-mail: brunoszwec@gmail.com
 - Telefon: +48 123 456 789
 - Adres: Grailz Sp. z o.o., ul. Przykładowa 10, 00-000 Warszawa
 - Grailz - Twój sklep z wyjątkową odzieżą.
