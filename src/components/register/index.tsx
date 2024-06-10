@@ -20,7 +20,7 @@ function RegisterComponent() {
       });
       if (response.status === 201) {
         console.log("User registered successfully:", response.data);
-        navigate("/account"); // Redirect to login page after successful registration
+        navigate("/account");
       } else {
         console.log("Failed to register user.");
       }
@@ -54,7 +54,7 @@ function RegisterComponent() {
           <button type="submit">Register</button>
         </div>
         <div id="login">
-        <div>Already have an account?{" "}</div>
+          <div>Already have an account?{" "}</div>
           <Link to="/account" className="login-button">
             Login
           </Link>
