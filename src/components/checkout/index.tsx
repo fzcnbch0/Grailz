@@ -91,7 +91,8 @@ const Checkout: React.FC = () => {
     setTotalPrice(totalPrice);
   }, [cartItems]);
 
-  const handleOrder = async () => {
+  const handleOrder = async (event: React.FormEvent) => {
+    event.preventDefault();
     if (userId) {
       try {
         await axios.post(`http://localhost:3000/users/${userId}/order`, {
@@ -106,6 +107,7 @@ const Checkout: React.FC = () => {
       setError('User is not logged in');
     }
   };
+  
 
   if (orderPlaced) {
     return <div>Order has been placed successfully!</div>;

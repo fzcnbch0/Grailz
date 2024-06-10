@@ -1,4 +1,3 @@
-// Checkout.test.tsx
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import axios from 'axios';
@@ -159,4 +158,56 @@ describe('Checkout Component', () => {
 
     await waitFor(() => expect(screen.getByText('Failed to place order')).toBeInTheDocument);
   });
+
+  // New test cases
+
+  test('displays empty cart message', async () => {
+    mockedAxios.get.mockResolvedValueOnce({ data: [] });
+
+    render(
+      <Router>
+        <Checkout />
+      </Router>
+    );
+
+    await waitFor(() => expect(screen.getByText('Cart is empty')).toBeInTheDocument);
+  });
+
+  test('displays error on failed shipping details fetch', async () => {
+    mockedAxios.get.mockImplementation((url) => {
+      if (url.includes('/cart')) {
+        return Promise.resolve({
+          data: [
+            {
+              item: {
+                item_id: 1,
+                name: 'Test Item',
+                description: 'A test item',
+                price: '10.00',
+                item_category: {
+                  size: 'M',
+                  designer: 'Test Designer'
+                },
+                offer: {
+                  image_path: '/path/to/image.jpg'
+                }
+              }
+            }
+          ]
+        });
+      } else if (url.includes('/shipping')) {
+        return Promise.reject(new Error('Failed to fetch shipping details'));
+      }
+      return Promise.reject(new Error('not found'));
+    });
+
+    render(
+      <Router>
+        <Checkout />
+      </Router>
+    );
+
+    await waitFor(() => expect(screen.getByText('Failed to fetch shipping details')).toBeInTheDocument);
+  });
+
 });
