@@ -187,7 +187,7 @@ const Checkout: React.FC = () => {
                     <p className='checkout-heading'>Order Details</p>
                     <div id='checkout-price'>
                       <p>Listing Price</p>
-                      <p className='total-prices'>{convertPrice(totalPrice.toFixed(2))}  {totalPrice.toFixed(2)} </p>
+                      <p className='total-prices'>{convertPrice(totalPrice.toFixed(2))} {selectedCurrency}</p>
                     </div>
                     <div id='checkout-shipping'>
                       <p>Shipping</p>
